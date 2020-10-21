@@ -3,8 +3,8 @@
 #include <string.h>
 #include <time.h>
 
-#include "headers/patient_list.h"
 #include "headers/menu.h"
+#include "headers/patient_list.h"
 #include "headers/register.h"
 
 #define DEBUG
@@ -32,15 +32,15 @@
 /* } */
 
 void teste(Patient *test) {
-  strcpy(test->name,"João Feitoso");
-  strcpy(test->cpf,"13597551901");
-  strcpy(test->phone,"439283743");
-  strcpy(test->anddress,"Rua Mathias");
-  strcpy(test->email,"email@gmail.com");
-  strcpy(test->diagnosticDate,"diagnosticDate");
-  strcpy(test->birthDay,"11/04/2001");
-  strcpy(test->cep,"cep");
-  strcpy(test->comorbidade,"Diabetes");
+  strcpy(test->name, "João Feitoso");
+  strcpy(test->cpf, "13597551901");
+  strcpy(test->phone, "439283743");
+  strcpy(test->anddress, "Rua Mathias");
+  strcpy(test->email, "email@gmail.com");
+  strcpy(test->diagnosticDate, "diagnosticDate");
+  strcpy(test->birthDay, "11/04/2001");
+  strcpy(test->cep, "cep");
+  strcpy(test->comorbidade, "Diabetes");
 }
 
 int receita(Patient_list *list) {
@@ -59,19 +59,20 @@ int receita(Patient_list *list) {
 
   char year[size][5];
 
-
   int j;
   int i = 0;
 
   while (aux != NULL) {
     for (j = 6; j < 10; j++) {
-      year[i][j-6] = aux->birthDay[j];
+      year[i][j - 6] = aux->birthDay[j];
     }
-    year[i][j-5] = '\0';
+    year[i][j - 5] = '\0';
     printf("Ano: %s\n", year[i]);
     int age = local_year - atoi(year[i]);
+#ifdef DEBUG
     printf("idade é %d \n", age);
-    if ( age > 65 ) {
+#endif
+    if (age > 65) {
       /* remove("secretaria.txt"); */
       FILE *file;
       file = fopen("secretaria.txt", "a");
@@ -79,14 +80,65 @@ int receita(Patient_list *list) {
       fclose(file);
     }
     aux = aux->prox;
-
   }
   return 0;
 }
+// FLUXO
+void FluxRegisterPatient(Patient_list *list) {
+  Patient p;
+  populate_struct_patient(&p);
+  list->push(list, &p);
+  list->save(list);
+  clearScreen();
+}
+void FluxPrintList(Patient_list * list) {
+  list->print(list);
+  puts("\nTecle Enter para continuar\n\n");
+  getchar();
+}
+void fluxo(Patient_list *list) {
+#ifndef DEBUG
+  int o = main_menu();
+  if ( o == 1 ) {
+    clearScreen();
+    o = login();
+  }
+
+  if (o == 0) {
+    o = logged();
+  }
+#endif
+#ifdef DEBUG
+  int o = 0;
+#endif
+
+  while (1) {
+    switch (o) {
+    case 0:
+      o = logged();
+      break;
+    case 1:
+      o = 0;
+      FluxRegisterPatient(list);
+      break;
+    case 2:
+      o = 0;
+      receita(list);
+      break;
+    case 3:
+      o = 0;
+      FluxPrintList(list);
+    }
+  }
+}
 
 int main(void) {
-  /* Patient patient; */
-  /* Patient_list *list = read_to_file(); */
+  Patient_list *list = read_to_file();
+
+  fluxo(list);
+
+  list->free(list);
+
   /* teste(&patient); */
   /* populate_struct_patient(&patient); */
   /* list->push(list,&patient); */
@@ -94,10 +146,8 @@ int main(void) {
   /*  */
   /* list->save(list); */
   /* receita(list); */
-  /* list->free(list); */
-  main_menu();
-#ifdef DEBUG
-#endif
+  /* main_menu(); */
+  /* login(); */
 
   return 0;
 }

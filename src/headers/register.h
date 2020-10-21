@@ -163,15 +163,20 @@ void setCep(char *cep) {
 }
 
 void setComorbidade(char *names) {
-  char op = 'n';
+  char op;
   puts("O paciente possui cormobidades ? S para sim e N para não");
-  op = getchar();
+  scanf("%c", &op);
+  getchar();
+
   if (op == 'N') {
     strcpy(names, "#");
   } else if (op == 'S') {
     printf("comorbidade do paciente separadas por virgula:\n ");
-    scanf("%s", names);
+    scanf("%[^\n]s", names);
     getchar();
+  } else {
+    puts("Erro de formação S maisculo para SIM e N maisculo para NÃO!!!");
+    setComorbidade(names);
   }
 }
 
