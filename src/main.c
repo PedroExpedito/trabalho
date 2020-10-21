@@ -7,8 +7,6 @@
 #include "headers/patient_list.h"
 #include "headers/register.h"
 
-#define DEBUG
-
 
 
 void teste(Patient *test) {
@@ -23,7 +21,7 @@ void teste(Patient *test) {
   strcpy(test->comorbidade, "Diabetes");
 }
 
-int receita(Patient_list *list) {
+int send_to_secretary(Patient_list *list) {
 
   int found = 0;
 
@@ -85,7 +83,7 @@ int receita(Patient_list *list) {
   return 0;
 }
 // FLUXO
-void FluxRemoveData() {
+void FluxRemoveData(Patient_list *list) {
   puts("Você realmente quer deletar todos os dados ?\n"
       "Isso apagara os seguintes aquivos:\n"
       "secretaria.txt e data.txt\n"
@@ -95,6 +93,8 @@ void FluxRemoveData() {
   if ( op == 'S' ) {
     remove("secretaria.txt");
     remove("data.txt");
+    list->free(list);
+    list = read_to_file();
     puts("Removido!!!");
   }
 }
@@ -137,7 +137,7 @@ void fluxo(Patient_list *list) {
       break;
     case 2:
       o = 0;
-      receita(list);
+      send_to_secretary(list);
       break;
     case 3:
       o = 0;
@@ -145,26 +145,30 @@ void fluxo(Patient_list *list) {
       break;
     case 4:
     o = 0;
-    FluxRemoveData();
+    FluxRemoveData(list);
     break;
     }
   }
 }
 
 int main(void) {
+  /* Patient patient; */
+
   Patient_list *list = read_to_file();
-
   fluxo(list);
-
   list->free(list);
+
 
   /* teste(&patient); */
   /* populate_struct_patient(&patient); */
   /* list->push(list,&patient); */
   /* list->print(list); */
+  /* list->free(list); */
+  /* list = read_to_file(); */
+  /* list->push(list,&patient); */
   /*  */
   /* list->save(list); */
-  /* receita(list); */
+  /* send_to_secretary(list); */
   /* main_menu(); */
   /* login(); */
 

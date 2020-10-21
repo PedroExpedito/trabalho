@@ -141,6 +141,7 @@ void save_to_file(Patient_list *list) {
 }
 
 void free_patient_list(Patient_list *list) {
+
   Patient *head = list->head;
   Patient *tmp;
 
@@ -148,7 +149,7 @@ void free_patient_list(Patient_list *list) {
     tmp = head;
     head = head->prox;
     free(tmp);
-  }
+ }
 }
 
 
