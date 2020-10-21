@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include <regex.h>
+#include "brdate.h"
 
 void setName(char *name) {
   printf("Nome do paciente: ");
@@ -122,15 +122,11 @@ void setDiagnosticDate(char *date) {
   scanf("%s", date);
   getchar();
 
-  if (strlen(date) != 10) {
+  if (!str_br_date_is_valid(date)) {
+    puts("erro de formatação!!!");
     setDiagnosticDate(date);
   }
 
-  int x = date[0] - '0';
-
-  if (x > 3) {
-    setDiagnosticDate(date);
-  }
 }
 
 void setBirthDay(char *date) {
@@ -138,16 +134,9 @@ void setBirthDay(char *date) {
   scanf("%s", date);
   getchar();
 
-  if (strlen(date) != 10) {
-    puts("A um erro na formatação");
-    setBirthDay(date);
-  }
-
-  int x = date[0] - '0';
-
-  if (x > 3) {
-    puts("A um erro na formatação");
-    setBirthDay(date);
+  if (!str_br_date_is_valid(date)) {
+    puts("erro de formatação!!!");
+    setDiagnosticDate(date);
   }
 }
 

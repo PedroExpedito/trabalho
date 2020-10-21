@@ -6,6 +6,7 @@
 #include "headers/menu.h"
 #include "headers/patient_list.h"
 #include "headers/register.h"
+#include "headers/brdate.h"
 
 
 
@@ -154,11 +155,16 @@ void fluxo(Patient_list *list) {
 int main(void) {
   /* Patient patient; */
 
+  //fluxo
   Patient_list *list = read_to_file();
   fluxo(list);
   list->free(list);
+  //endfluxo
 
 
+  /* printf("%s/%s/%s\n", date.day,date.month,date.yearl); */
+
+  /* printf("%s\n", data); */
   /* teste(&patient); */
   /* populate_struct_patient(&patient); */
   /* list->push(list,&patient); */
