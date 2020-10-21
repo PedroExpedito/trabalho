@@ -1,8 +1,18 @@
+#Author Pedro Expedito De Oliveira
+#Date: 21/10/2020
+
+BIN="../bin"
+CC="gcc"
+CCW="x86_64-w64-mingw32-gcc"
+
 all:
-	gcc -g -Wall  main.c -o runme
+	${CC} -g -Wall -Wextra main.c -o ${BIN}/runme.elf
 windows:
-	x86_64-w64-mingw32-gcc -Wall -Wextra main.c -o runme.exe
+	${CCW} -Wall -Wextra main.c -o ${BIN}/runme.exe
 run:
-	./runme
-#-Wextra
+	${BIN}/runme.elf
+RunWindows:
+	wine64-stable ${BIN}/runme.exe
+clear:
+	rm -r -f ${BIN}/*
 

@@ -59,6 +59,7 @@ int logged(void) {
       "1 para registrar paciente\n"
       "2 para gerar aquivo para secretaria da saude\n"
       "3 para imprimir lista de pacientes\n"
+      "4 para remover datas 'Pacientes'\n"
       );
   int ret;
 
@@ -68,7 +69,7 @@ int logged(void) {
   if(ret == 0) {
     exit(0);
   }
-  if ( ret < 1 || ret > 3 ) {
+  if ( ret < 1 || ret > 4 ) {
     logged();
   }
   return ret;

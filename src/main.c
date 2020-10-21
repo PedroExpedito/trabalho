@@ -9,27 +9,7 @@
 
 #define DEBUG
 
-/* bool login(char *senha) { */
-/*   if (strcmp(senha, senhav) == 0) { */
-/*     return true; */
-/*   }; */
-/*   return false; */
-/* }; */
 
-/* void verificargrupoderisco(Patient* a) { */
-/*   printf("valor: %d\n", a->age); */
-/*     if (a->age > 65 ) { */
-/*       puts("Entrei"); */
-/*     a->risco = true; */
-/*   } else { */
-/*   a->risco = false; */
-/*   } */
-/* } */
-
-/* int new_patient(Patient* patient) { */
-/*  */
-/*   return 0; */
-/* } */
 
 void teste(Patient *test) {
   strcpy(test->name, "João Feitoso");
@@ -44,6 +24,9 @@ void teste(Patient *test) {
 }
 
 int receita(Patient_list *list) {
+
+  int found = 0;
+
   Patient *aux = list->head;
 
   int size = list->size(list);
@@ -62,28 +45,59 @@ int receita(Patient_list *list) {
   int j;
   int i = 0;
 
+  /* remove("secretaria.txt"); */
   while (aux != NULL) {
     for (j = 6; j < 10; j++) {
       year[i][j - 6] = aux->birthDay[j];
     }
     year[i][j - 5] = '\0';
-    printf("Ano: %s\n", year[i]);
     int age = local_year - atoi(year[i]);
+
 #ifdef DEBUG
+    printf("Ano: %s\n", year[i]);
     printf("idade é %d \n", age);
 #endif
-    if (age > 65) {
-      /* remove("secretaria.txt"); */
+
+    if (age > 65 && strcmp(aux->comorbidade, "#") != 0) {
+
+      // evitar duplicatas
+      if ( found == 0) {
+        remove("secretaria.txt");
+      }
+
+      found = 1;
       FILE *file;
       file = fopen("secretaria.txt", "a");
-      fprintf(file, "CEP: %s\nIDADE: %d", aux->cep, age);
+      fprintf(file, "CEP: %s\nIDADE: %d\n", aux->cep, age);
       fclose(file);
+      puts("Salvo em ./secrataria.txt \n Dijite Enter para continuar");
+      getchar();
     }
     aux = aux->prox;
+  }
+  if ( found == 0 ) {
+    puts("Não a pacientes em grupo de risco para ser enviado!!!\n");
+    puts("Clique Enter para continuar");
+    getchar();
+  } else if ( found == 1 ) {
+    puts("Arquivo criado com sucesso!");
   }
   return 0;
 }
 // FLUXO
+void FluxRemoveData() {
+  puts("Você realmente quer deletar todos os dados ?\n"
+      "Isso apagara os seguintes aquivos:\n"
+      "secretaria.txt e data.txt\n"
+      "Dijite S para confirmar ou N para cancelar") ;
+  char op;
+  scanf("%c", &op);
+  if ( op == 'S' ) {
+    remove("secretaria.txt");
+    remove("data.txt");
+    puts("Removido!!!");
+  }
+}
 void FluxRegisterPatient(Patient_list *list) {
   Patient p;
   populate_struct_patient(&p);
@@ -128,6 +142,11 @@ void fluxo(Patient_list *list) {
     case 3:
       o = 0;
       FluxPrintList(list);
+      break;
+    case 4:
+    o = 0;
+    FluxRemoveData();
+    break;
     }
   }
 }

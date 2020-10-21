@@ -1,50 +1,58 @@
 # Contexto
- Sistema em C para cadastrar pacientes diagnosticados com covid-19.
 
- OBJETIVO GERAL
+ Sistema em C para cadastrar pacientes diagnosticados com Covid-19.
+
+ **OBJETIVO GERAL**
+
  ```
+
 Com base no conteúdo das disciplinas de LINGUAGEM E TÉCNICAS DE PROGRAMAÇÃO
 e ENGENHARIA DE SOFTWARE I, o aluno ou grupo do PIM deverá apresentar um
 sistema em C que será utilizado pelos hospitais para cadastrar os pacientes que forem
 diagnosticados com covid-19 e carecem de um acompanhamento e monitoramento para
 que essa informação possa ser enviada para a central da Secretaria da Saúde.
+
 ```
+
+### Melhorias
+
+1. [ ] - Biblioteca de manipulação de datas com localidade brasileira
+
+
 
 
 Requisitos obrigatórios
 
-0. [ ] - Dados precisam ser salvo em arquivos TXT
+0. [x] - Dados precisam ser salvo em arquivos TXT
 
-1. [?] - Sistema de Login
+1. [x] - Sistema de Login
 
-2. [ ] - Calcular idade de acordo com a data de nascimento
+2. [x] - Calcular idade de acordo com a data de nascimento
 
 3. [x] - Verificar se o paciente está no grupo de risco ou seja maior que 65 anos
 
-4. [ ] - Guardar o Cep apenas se o paciente for do grupo de risco ????
+4. [x] - Guardar o CEP apenas se o paciente for do grupo de risco ????
 
-5. [ ] - Paradigma procedural estruturado.
+5. [x] - Paradigma procedural estruturado.
 
-6. [ ] - Validar campos de entrada.
-   [x] - Nome
-   x] - cpf
-   [x] - Telefone ( Validar tamanho );
-    [x] - Endereço
-  [ ]
-  [ ] - Data de Nascimento
-  [ ] - E-mail
-  [ ] - Data Do Diagnóstico
-  [ ] - Comorbidade do paciente( diabetes,obesidade);
-  [ ] - CEP
-  [ ] - IDADE
+### Validar campos de entrada.
+1.  [x] - Nome
+2.  [x] - CPF
+3.  [x] - Telefone ( Validar tamanho );
+4.  [x] - Endereço
+6.  [x] - Data de Nascimento
+7.  [x] - E-mail
+8.  [x] - Data Do Diagnóstico
+9.  [x] - Comorbidade do paciente( diabetes,obesidade);
+11. [x] - CEP
+12. [x] - IDADE
 
 ## Telas
 
-[ ] - Login/Registro de quem vai criar pacientes
-[ ] - criar paciente
-[ ] - listar pacientes
-[ ] - listar apenas pacientes de risco
-
+1. [x] - Login/Registro de quem vai criar pacientes
+2. [x] - criar paciente
+3. [x] - listar pacientes
+4. [x] - Apagar dados
 
 ## Campo PODIA TER NO MANUAL MAIS NÃO TEM!!!
 
@@ -58,7 +66,7 @@ Endereço
 Data de Nascimento
 E-mail
 Data Do Diagnóstico
-Comorbidade do paciente( diabetes,obsidade);
+Comorbidade do paciente( diabetes,obesidade);
 CEP
 IDADE
 
@@ -67,16 +75,7 @@ IDADE
 CEP
 IDADE
 
-## Entrega
-
- 1) DocPIM (arquivo do Word no formato padrão ABNT, com as telas do programa,
-manual do usuário, manual de instalação, como compilar o programa, como testar etc.);
-
- 2) Binários do programa (exel, dlls, arquivos de teste, arquivo de configuração);
-
- 3) Arquivos fontes (projeto desenvolvido no codeblock).
-
-Interessante:
+### Interessante:
 
   **Arquivo a principal** vantagem de um arquivo é que as informações
 armazenadas podem ser consultadas a qualquer momento) com todos os
