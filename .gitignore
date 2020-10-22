@@ -1,6 +1,6 @@
 .ccls-cache/**/
 codeblocks/**/
 **/*.exe
-**/runme
+**/runme*
 **/data.txt
 **/secretaria.txt
