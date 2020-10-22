@@ -16,7 +16,8 @@ que essa informação possa ser enviada para a central da Secretaria da Saúde.
 
 ### Melhorias
 
-1. [ ] - Biblioteca de manipulação de datas com localidade brasileira
+1. [x] - Biblioteca de manipulação de datas com localidade brasileira
+2. [ ] - Evitar duplicatas de pacientes
 
 
 

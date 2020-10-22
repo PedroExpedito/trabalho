@@ -160,6 +160,7 @@ int main(void) {
   fluxo(list);
   list->free(list);
   //endfluxo
+  printf("valor:%ld", sizeof(Patient));
 
 
   /* printf("%s/%s/%s\n", date.day,date.month,date.yearl); */
