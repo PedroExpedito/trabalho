@@ -10,17 +10,17 @@
 
 
 
-void teste(Patient *test) {
-  strcpy(test->name, "João Feitoso");
-  strcpy(test->cpf, "13597551901");
-  strcpy(test->phone, "439283743");
-  strcpy(test->anddress, "Rua Mathias");
-  strcpy(test->email, "email@gmail.com");
-  strcpy(test->diagnosticDate, "diagnosticDate");
-  strcpy(test->birthDay, "11/04/2001");
-  strcpy(test->cep, "cep");
-  strcpy(test->comorbidade, "Diabetes");
-}
+/* void teste(Patient *test) { */
+/*   strcpy(test->name, "João Feitoso"); */
+/*   strcpy(test->cpf, "10697591901"); */
+/*   strcpy(test->phone, "439283743"); */
+/*   strcpy(test->anddress, "Rua Mathias"); */
+/*   strcpy(test->email, "email@gmail.com"); */
+/*   strcpy(test->diagnosticDate, "diagnosticDate"); */
+/*   strcpy(test->birthDay, "11/04/2001"); */
+/*   strcpy(test->cep, "cep"); */
+/*   strcpy(test->comorbidade, "Diabetes"); */
+/* } */
 
 int send_to_secretary(Patient_list *list) {
 
@@ -44,7 +44,6 @@ int send_to_secretary(Patient_list *list) {
   int j;
   int i = 0;
 
-  /* remove("secretaria.txt"); */
   while (aux != NULL) {
     for (j = 6; j < 10; j++) {
       year[i][j - 6] = aux->birthDay[j];
@@ -84,12 +83,14 @@ int send_to_secretary(Patient_list *list) {
   return 0;
 }
 // FLUXO
+
 void FluxRemoveData(Patient_list *list) {
   puts("Você realmente quer deletar todos os dados ?\n"
       "Isso apagara os seguintes aquivos:\n"
       "secretaria.txt e data.txt\n"
       "Dijite S para confirmar ou N para cancelar") ;
   char op;
+
   scanf("%c", &op);
   if ( op == 'S' ) {
     remove("secretaria.txt");
@@ -99,6 +100,7 @@ void FluxRemoveData(Patient_list *list) {
     puts("Removido!!!");
   }
 }
+
 void FluxRegisterPatient(Patient_list *list) {
   Patient p;
   populate_struct_patient(&p);
@@ -106,11 +108,13 @@ void FluxRegisterPatient(Patient_list *list) {
   list->save(list);
   clearScreen();
 }
+
 void FluxPrintList(Patient_list * list) {
   list->print(list);
   puts("\nTecle Enter para continuar\n\n");
   getchar();
 }
+
 void fluxo(Patient_list *list) {
 #ifndef DEBUG
   int o = main_menu();
@@ -153,31 +157,11 @@ void fluxo(Patient_list *list) {
 }
 
 int main(void) {
-  /* Patient patient; */
-
   //fluxo
   Patient_list *list = read_to_file();
   fluxo(list);
   list->free(list);
   //endfluxo
-  printf("valor:%ld", sizeof(Patient));
-
-
-  /* printf("%s/%s/%s\n", date.day,date.month,date.yearl); */
-
-  /* printf("%s\n", data); */
-  /* teste(&patient); */
-  /* populate_struct_patient(&patient); */
-  /* list->push(list,&patient); */
-  /* list->print(list); */
-  /* list->free(list); */
-  /* list = read_to_file(); */
-  /* list->push(list,&patient); */
-  /*  */
-  /* list->save(list); */
-  /* send_to_secretary(list); */
-  /* main_menu(); */
-  /* login(); */
 
   return 0;
 }

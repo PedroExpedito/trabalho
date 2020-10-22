@@ -39,6 +39,7 @@ struct Patient_list{
   void (*print)(struct Patient_list*);
   void (*save)(struct Patient_list *list);
   void (*free)(struct Patient_list*);
+  int (*seach_cpf)(struct Patient_list *,char *);
 
 };
 
@@ -66,6 +67,7 @@ void push_patient(Patient_list *list, Patient *data) {
     list->head = &list->data;
     list->current = &list->data;
   } else {
+    if ( list->seach_cpf(list, data->cpf) == 0) {
     Patient *p = (Patient *)malloc(sizeof(Patient));
     if (p == NULL) {
       fprintf(stderr, "erro ao alocar memoria");
@@ -75,6 +77,7 @@ void push_patient(Patient_list *list, Patient *data) {
     p->prox = NULL;
     list->current->prox = p;
     list->current = p;
+    }
   }
 }
 
@@ -152,6 +155,17 @@ void free_patient_list(Patient_list *list) {
  }
 }
 
+int search_patient_wich_cpf(Patient_list *list,char * cpf) {
+  Patient * aux = list->head;
+  for ( int i = 0; i < size_list_patients(list); i++ ) {
+    if ( strcmp(aux->cpf, cpf) == 0 ) {
+      return 1;
+    }
+    aux = aux->prox;
+  }
+  return 0;
+}
+
 
 void Patient_list_contructor(Patient_list *list) {
   list->size = size_list_patients;
@@ -159,6 +173,7 @@ void Patient_list_contructor(Patient_list *list) {
   list->push = push_patient;
   list->print = print_patients;
   list->save = save_to_file;
+  list->seach_cpf = search_patient_wich_cpf;
   list->free = free_patient_list;
 }
 
