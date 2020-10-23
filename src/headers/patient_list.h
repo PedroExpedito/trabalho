@@ -5,16 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-void my_strcpy(char *dest, char* new_char) {
-  int i = 0;
-  while(new_char[i] != '\0'){
-    dest[i] = new_char[i];
-    i++;
-  }
-}
 
 typedef struct Patient {
-  struct Patient * prox;
+  struct Patient *prox;
   // public
   char name[200];
   char cpf[12];
@@ -27,25 +20,24 @@ typedef struct Patient {
   char comorbidade[500];
 } Patient;
 
-struct Patient_list{
+struct Patient_list {
   Patient data;
   Patient *head;
   Patient *current;
 
-  //func
-  int (*size)(struct Patient_list*);
-  int (*empty)(struct Patient_list*);
-  void (*push)(struct Patient_list*,Patient *);
-  void (*print)(struct Patient_list*);
+  // func
+  int (*size)(struct Patient_list *);
+  int (*empty)(struct Patient_list *);
+  int (*push)(struct Patient_list *, Patient *);
+  void (*print)(struct Patient_list *);
   void (*save)(struct Patient_list *list);
-  void (*free)(struct Patient_list*);
-  int (*seach_cpf)(struct Patient_list *,char *);
-
+  void (*free)(struct Patient_list *);
+  int (*seach_cpf)(struct Patient_list *, char *);
 };
 
 typedef struct Patient_list Patient_list;
 
-void patient_copy(Patient *dest, Patient* new_patient){
+void patient_copy(Patient *dest, Patient *new_patient) {
   strcpy(dest->name, new_patient->name);
   strcpy(dest->cpf, new_patient->cpf);
   strcpy(dest->email, new_patient->email);
@@ -57,8 +49,7 @@ void patient_copy(Patient *dest, Patient* new_patient){
   strcpy(dest->comorbidade, new_patient->comorbidade);
 }
 
-
-void push_patient(Patient_list *list, Patient *data) {
+int push_patient(Patient_list *list, Patient *data) {
 
   if (list->head == NULL) {
     puts("\n\nLISTA NULLz\n\n");
@@ -67,18 +58,21 @@ void push_patient(Patient_list *list, Patient *data) {
     list->head = &list->data;
     list->current = &list->data;
   } else {
-    if ( list->seach_cpf(list, data->cpf) == 0) {
-    Patient *p = (Patient *)malloc(sizeof(Patient));
-    if (p == NULL) {
-      fprintf(stderr, "erro ao alocar memoria");
-      exit(1);
-    }
-    patient_copy(p, data);
-    p->prox = NULL;
-    list->current->prox = p;
-    list->current = p;
+    if (list->seach_cpf(list, data->cpf) == 0) {
+      Patient *p = (Patient *)malloc(sizeof(Patient));
+      if (p == NULL) {
+        fprintf(stderr, "erro ao alocar memoria");
+        exit(1);
+      }
+      patient_copy(p, data);
+      p->prox = NULL;
+      list->current->prox = p;
+      list->current = p;
+    } else {
+      return 0;
     }
   }
+  return 1;
 }
 
 int empty_list_patient(Patient_list *list) {
@@ -127,7 +121,6 @@ void save_to_file(Patient_list *list) {
   Patient *aux = list->head;
   fprintf(arq, "%d\n", size_list_patients(list));
 
-
   while (aux != NULL) {
     fprintf(arq, "%s\n", aux->name);
     fprintf(arq, "%s\n", aux->cpf);
@@ -152,20 +145,19 @@ void free_patient_list(Patient_list *list) {
     tmp = head;
     head = head->prox;
     free(tmp);
- }
+  }
 }
 
-int search_patient_wich_cpf(Patient_list *list,char * cpf) {
-  Patient * aux = list->head;
-  for ( int i = 0; i < size_list_patients(list); i++ ) {
-    if ( strcmp(aux->cpf, cpf) == 0 ) {
+int search_patient_wich_cpf(Patient_list *list, char *cpf) {
+  Patient *aux = list->head;
+  for (int i = 0; i < size_list_patients(list); i++) {
+    if (strcmp(aux->cpf, cpf) == 0) {
       return 1;
     }
     aux = aux->prox;
   }
   return 0;
 }
-
 
 void Patient_list_contructor(Patient_list *list) {
   list->size = size_list_patients;
@@ -199,15 +191,12 @@ Patient_list *read_to_file() {
     return create_patient_list();
   }
 
-
   Patient_list *p = (Patient_list *)malloc(sizeof(Patient_list));
   Patient_list_contructor(p);
-
 
   if (p == NULL) {
     fprintf(stderr, "falha ao alocar memoria\n");
   }
-
 
   Patient tmp;
   int size;
@@ -221,11 +210,11 @@ Patient_list *read_to_file() {
 
   for (int i = 0; i < size; i++) {
     if (first == 0) {
-      fscanf(arq,
-            "%d\n%[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n]s",
-             &lixo, tmp.name, tmp.cpf, tmp.phone, tmp.anddress, tmp.email, tmp.diagnosticDate,
-             tmp.birthDay, tmp.cep, tmp.comorbidade);
-
+      fscanf(
+          arq,
+          "%d\n%[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n]s",
+          &lixo, tmp.name, tmp.cpf, tmp.phone, tmp.anddress, tmp.email,
+          tmp.diagnosticDate, tmp.birthDay, tmp.cep, tmp.comorbidade);
 
       patient_copy(&p->data, &tmp);
       p->data.prox = NULL;
@@ -235,8 +224,8 @@ Patient_list *read_to_file() {
     } else {
       fscanf(arq,
              "\n%[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n] %[^\n]",
-             tmp.name, tmp.cpf, tmp.phone,tmp.anddress, tmp.email, tmp.diagnosticDate,
-             tmp.birthDay, tmp.cep,tmp.comorbidade);
+             tmp.name, tmp.cpf, tmp.phone, tmp.anddress, tmp.email,
+             tmp.diagnosticDate, tmp.birthDay, tmp.cep, tmp.comorbidade);
       push_patient(p, &tmp);
     }
   }
@@ -245,7 +234,5 @@ Patient_list *read_to_file() {
 
   return p;
 };
-
-
 
 #endif

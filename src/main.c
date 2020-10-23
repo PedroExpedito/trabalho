@@ -4,9 +4,12 @@
 #include <time.h>
 
 #include "headers/menu.h"
+
 #include "headers/patient_list.h"
+
 #include "headers/register.h"
 #include "headers/brdate.h"
+#include "headers/secretary.h"
 
 
 
@@ -22,66 +25,6 @@
 /*   strcpy(test->comorbidade, "Diabetes"); */
 /* } */
 
-int send_to_secretary(Patient_list *list) {
-
-  int found = 0;
-
-  Patient *aux = list->head;
-
-  int size = list->size(list);
-
-  printf("size: %d\n", size);
-
-  time_t user_time;
-  user_time = time(NULL);
-
-  struct tm tm = *localtime(&user_time);
-
-  int local_year = tm.tm_year + 1900;
-
-  char year[size][5];
-
-  int j;
-  int i = 0;
-
-  while (aux != NULL) {
-    for (j = 6; j < 10; j++) {
-      year[i][j - 6] = aux->birthDay[j];
-    }
-    year[i][j - 5] = '\0';
-    int age = local_year - atoi(year[i]);
-
-#ifdef DEBUG
-    printf("Ano: %s\n", year[i]);
-    printf("idade é %d \n", age);
-#endif
-
-    if (age > 65 && strcmp(aux->comorbidade, "#") != 0) {
-
-      // evitar duplicatas
-      if ( found == 0) {
-        remove("secretaria.txt");
-      }
-
-      found = 1;
-      FILE *file;
-      file = fopen("secretaria.txt", "a");
-      fprintf(file, "CEP: %s\nIDADE: %d\n", aux->cep, age);
-      fclose(file);
-      puts("Salvo em ./secrataria.txt \n Dijite Enter para continuar");
-      getchar();
-    }
-    aux = aux->prox;
-  }
-  if ( found == 0 ) {
-    puts("Não a pacientes em grupo de risco para ser enviado!!!\n");
-    puts("Clique Enter para continuar");
-    getchar();
-  } else if ( found == 1 ) {
-    puts("Arquivo criado com sucesso!");
-  }
-  return 0;
-}
 // FLUXO
 
 void FluxRemoveData(Patient_list *list) {
@@ -104,12 +47,18 @@ void FluxRemoveData(Patient_list *list) {
 void FluxRegisterPatient(Patient_list *list) {
   Patient p;
   populate_struct_patient(&p);
-  list->push(list, &p);
-  list->save(list);
-  clearScreen();
+
+  if (list->push(list, &p) != 1) {
+    puts("Usuario já cadrastado anteriormente Enter para continuar!");
+    getchar();
+  } else {
+    send_to_secretary(list);
+    list->save(list);
+    clearScreen();
+  }
 }
 
-void FluxPrintList(Patient_list * list) {
+void FluxPrintList(Patient_list *list) {
   list->print(list);
   puts("\nTecle Enter para continuar\n\n");
   getchar();
@@ -118,7 +67,7 @@ void FluxPrintList(Patient_list * list) {
 void fluxo(Patient_list *list) {
 #ifndef DEBUG
   int o = main_menu();
-  if ( o == 1 ) {
+  if (o == 1) {
     clearScreen();
     o = login();
   }
@@ -149,19 +98,19 @@ void fluxo(Patient_list *list) {
       FluxPrintList(list);
       break;
     case 4:
-    o = 0;
-    FluxRemoveData(list);
-    break;
+      o = 0;
+      FluxRemoveData(list);
+      break;
     }
   }
 }
 
 int main(void) {
-  //fluxo
+  // fluxo
   Patient_list *list = read_to_file();
   fluxo(list);
   list->free(list);
-  //endfluxo
+  // endfluxo
 
   return 0;
 }
