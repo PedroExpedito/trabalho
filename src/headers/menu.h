@@ -37,13 +37,13 @@ int login(void) {
   char user[] = "admin";
   char password[] = "admin";
 
-  puts("Dijite o usuario:");
+  puts("Digite o usuario:");
   scanf("%s", inputUser);
   if ( strcmp(inputUser, user) != 0 ) {
     puts("usuario invalido!!!");
     login();
   }
-  puts("Dijite a senha:");
+  puts("Digite a senha:");
   scanf("%s", inputPassworld);
   if ( strcmp(inputPassworld, password) != 0 ) {
     puts("senha invalida!!!");
