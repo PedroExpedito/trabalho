@@ -19,6 +19,7 @@ que essa informação possa ser enviada para a central da Secretaria da Saúde.
 1. [x] - Biblioteca de manipulação de datas com localidade brasileira
 2. [x] - Evitar duplicatas de pacientes
 3. [ ] - Menus mais bonitos
+4. [x] - Melhoria na validação de números de telefone e celulares
 
 
 
@@ -89,3 +90,6 @@ pertença ao grupo de risco o sistema deverá salvar em um arquivo de texto o CE
 do paciente para que essa informação possa ser enviada para a central da Secretaria da
 Saúde da cidade.
 
+# Bugs
+
+Erro de datas **RESOLVIDO**
