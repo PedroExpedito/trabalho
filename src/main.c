@@ -31,7 +31,7 @@ void FluxRemoveData(Patient_list *list) {
   puts("Você realmente quer deletar todos os dados ?\n"
       "Isso apagara os seguintes aquivos:\n"
       "secretaria.txt e data.txt\n"
-      "Dijite S para confirmar ou N para cancelar") ;
+      "Digite S para confirmar ou N para cancelar") ;
   char op;
 
   scanf("%c", &op);
