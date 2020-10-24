@@ -54,7 +54,14 @@ int verificarNumero(char *entrada) {
   return 1;
 }
 
-int str_br_date_is_valid(char *date) {
+int str_br_date_is_valid(char *datec) {
+
+  char *date;
+
+  date = (char *) malloc(strlen(datec) + 1);
+
+  strcpy(date, datec);
+
   const char substring[3] = "//";
 
   if (strstr(date, substring) != NULL) {

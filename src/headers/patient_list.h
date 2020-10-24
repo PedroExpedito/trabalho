@@ -13,10 +13,10 @@ typedef struct Patient {
   char cpf[12];
   char phone[20];
   char anddress[500];
-  char birthDay[100];
+  char birthDay[13];
   char email[500];
-  char diagnosticDate[100];
-  char cep[100];
+  char diagnosticDate[13];
+  char cep[9];
   char comorbidade[500];
 } Patient;
 
