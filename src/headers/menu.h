@@ -14,9 +14,10 @@ void clearScreen() {
 int main_menu(void) {
   clearScreen();
 
-  printf("MENU\n"
-      "1 para login \n"
-      "2 para sair\n");
+  printf("======= MENU ========\n"
+      "Pressione 1 para login \n"
+      "Pressione 2 para sair\n"
+      "=====================\n");
 
   int ret;
 
@@ -37,10 +38,10 @@ int login(void) {
   char user[] = "admin";
   char password[] = "admin";
 
-  puts("Digite o usuario:");
+  puts("Digite o usuário:");
   scanf("%s", inputUser);
   if ( strcmp(inputUser, user) != 0 ) {
-    puts("usuario invalido!!!");
+    puts("usuário invalido!!!");
     login();
   }
   puts("Digite a senha:");
@@ -54,10 +55,10 @@ int login(void) {
 
 int logged(void) {
   clearScreen();
-  printf("MENU\n"
+  printf("======= MENU =======\n"
       "0 para sair\n"
       "1 para registrar paciente\n"
-      "2 para gerar aquivo para secretaria da saude\n"
+      "2 para gerar aquivo para secretaria da saúde\n"
       "3 para imprimir lista de pacientes\n"
       "4 para remover datas 'Pacientes'\n"
       );

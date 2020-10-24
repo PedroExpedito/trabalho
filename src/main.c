@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <locale.h>
 
 #include "headers/menu.h"
 
@@ -10,7 +11,6 @@
 #include "headers/register.h"
 #include "headers/brdate.h"
 #include "headers/secretary.h"
-
 
 
 /* void teste(Patient *test) { */
@@ -106,11 +106,14 @@ void fluxo(Patient_list *list) {
 }
 
 int main(void) {
+  setlocale(LC_ALL, "Portuguese");
   // fluxo
   Patient_list *list = read_to_file();
   fluxo(list);
   list->free(list);
   // endfluxo
+
+
 
   return 0;
 }
