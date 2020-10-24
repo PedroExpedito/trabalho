@@ -115,6 +115,8 @@ int str_br_date_is_valid(char *datec) {
 
   // Caso contrário, retorne '1'
 
+
+  free(date);
   return 1;
 }
 

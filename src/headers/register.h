@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "brdate.h"
 
 void setName(char *name) {
@@ -63,7 +64,20 @@ void setCpf(char *cpf) {
 void setPhone(char *phone) {
   printf("Telefone do paciente: ");
   scanf("%s", phone);
-  getchar();
+  int i = 0;
+  int size = strlen(phone);
+
+  if ( size < 6 || size > 20 ) {
+    puts("Erro na formatação tente novamente Enter para continuar");
+    setPhone(phone);
+  }
+  while( phone[i] != '\0') {
+  if (isdigit(phone[i]) == 0) {
+    puts("Erro na formatação tente novamente Enter para continuar");
+    setPhone(phone);
+  }
+  i++;
+  }
 }
 
 void setAndress(char *anddress) {
