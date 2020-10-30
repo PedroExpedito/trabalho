@@ -11,9 +11,9 @@ all:
 windows:
 	${CCW} -Wall -Wextra main.c -o ${BIN}/${NAME}.exe
 run:
-	${BIN}/runme.elf
+	${BIN}/${NAME}
 RunWindows:
-	wine64-stable ${BIN}/runme.exe
+	wine64-stable ${BIN}/${NAME}.exe
 clear:
 	rm -r -f ${BIN}/*
 

@@ -12,6 +12,7 @@
 #include "headers/brdate.h"
 #include "headers/secretary.h"
 
+/* #define DEBUG */
 
 /* void teste(Patient *test) { */
 /*   strcpy(test->name, "João Feitoso"); */

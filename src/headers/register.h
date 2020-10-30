@@ -63,7 +63,8 @@ void setCpf(char *cpf) {
 
 void setPhone(char *phone) {
   printf("Telefone do paciente: ");
-  scanf("%s", phone);
+  scanf("%12s", phone);
+  getchar();
   int i = 0;
   int size = strlen(phone);
 
@@ -156,7 +157,7 @@ void setBirthDay(char *date) {
 
 void setCep(char *cep) {
   printf("CEP do paciente: ");
-  scanf("%s", cep);
+  scanf("%8s", cep);
   getchar();
 
   if (strlen(cep) != 8) {
