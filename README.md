@@ -92,4 +92,7 @@ Saúde da cidade.
 
 # Bugs
 
-Erro de datas **RESOLVIDO**
+* Erro de datas **RESOLVIDO**
+
+* Erro ao entrar com usuário invalido e volta a
+função login e por motivos misteriosos pedem a senha 2 vezes

@@ -41,13 +41,15 @@ int login(void) {
   puts("Digite o usuário:");
   scanf("%s", inputUser);
   if ( strcmp(inputUser, user) != 0 ) {
-    puts("usuário invalido!!!");
+    puts("usuário invalido!!!\n"
+        "Dados de autenticação pode ser encontrado na documentação 'PIM' ");
     login();
   }
   puts("Digite a senha:");
   scanf("%s", inputPassworld);
   if ( strcmp(inputPassworld, password) != 0 ) {
-    puts("senha invalida!!!");
+    puts("senha invalida!!!"
+        "Dados de autenticação pode ser encontrado na documentação 'PIM' ");
     login();
   }
   return 0;
