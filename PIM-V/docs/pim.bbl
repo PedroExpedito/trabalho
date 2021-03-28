@@ -1,0 +1,54 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Giambiagi e Schmidt 2016]{giambiagi2016macroeconomia}
+\abntrefinfo{Giambiagi e Schmidt}{GIAMBIAGI; SCHMIDT}{2016}
+{GIAMBIAGI, F.; SCHMIDT, C. \emph{Macroeconomia para executivos: Teoria e
+  pr{\'a}tica no Brasil}. Elsevier Editora Ltda., 2016.
+ISBN 9788535282344. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=FK84DwAAQBAJ}.}
+
+\bibitem[INEP Acessado em 27/03/2021]{INEP}
+\abntrefinfo{INEP\ldots}{INEP\ldots}{}
+{INEP Acessado em 27/03/2021.
+  \url{http://portal.inep.gov.br/artigo/-/asset_publisher/B4AQV9zFY7Bv/content/escolas-estaduais-e-privadas-tem-recursos-tecnologicos-equivalentes-no-ensino-medio-federais-sao-as-mais-equipadas/21206}.
+Accessed: 2021-03-27.}
+
+\bibitem[Prescott e Torres 2015]{prescott2015html}
+\abntrefinfo{Prescott e Torres}{PRESCOTT; TORRES}{2015}
+{PRESCOTT, P.; TORRES, P. \emph{HTML 5}. Babelcube Incorporated, 2015.
+ISBN 9781507120446. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=5OyNCgAAQBAJ}.}
+
+\bibitem[Rios e Moreira 2013]{rios2013teste}
+\abntrefinfo{Rios e Moreira}{RIOS; MOREIRA}{2013}
+{RIOS, E.; MOREIRA, T. \emph{Teste de Software}. ELSEVIER/ALTA BOOKS, 2013.
+ISBN 9788576087755. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=I2a2BAAAQBAJ}.}
+
+\bibitem[Sabbagh 2014]{sabbagh2014scrum}
+\abntrefinfo{Sabbagh}{SABBAGH}{2014}
+{SABBAGH, R. \emph{Scrum: Gest{\~a}o {\'a}gil para projetos de sucesso}. Casa
+  do C{\'o}digo, 2014.
+ISBN 9788566250954. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=pG-CCwAAQBAJ}.}
+
+\bibitem[Sommerville et al. 2008]{sommerville2008engenharia}
+\abntrefinfo{Sommerville et al.}{SOMMERVILLE et al.}{2008}
+{SOMMERVILLE, I. et al. \emph{Engenharia de software}. ADDISON WESLEY BRA,
+  2008.
+ISBN 9788588639287. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=ifIYOgAACAAJ}.}
+
+\bibitem[Vasconcellos 2006]{de2006economia}
+\abntrefinfo{Vasconcellos}{VASCONCELLOS}{2006}
+{VASCONCELLOS, M. de. \emph{Economia: micro e macro : teoria e exerc{\'\i}cios,
+  gloss{\'a}rio com os 300 principais conceitos econ{\^o}micos}. Atlas, 2006.
+ISBN 9788522443215. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=YxOPPgAACAAJ}.}
+
+\end{thebibliography}

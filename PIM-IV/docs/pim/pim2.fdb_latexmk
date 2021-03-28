@@ -1,0 +1,12 @@
+# Fdb version 3
+["pdflatex"] 1613956262 "pim2.tex" "pim2.pdf" "pim2" 1613956262
+  "/etc/texmf/web2c/texmf.cnf" 1613955610 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1551493644 34566 ab5be96bde1a5acfd4f881dbe566b5fb ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1613955618 795362 5e60ad8505576f99699fb60b6b19a106 ""
+  "abntex2.cls" 0 -1 0 ""
+  "pim2.aux" 1613956262 8 a94a2480d3289e625eea47cd1b285758 ""
+  "pim2.tex" 1613956119 39451 1dfe79d15c0b64c6dc06a290fc368ea8 ""
+  (generated)
+  "pim2.log"
+  "pim2.pdf"

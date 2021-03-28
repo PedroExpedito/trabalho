@@ -1,0 +1,65 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Abran e Moore 2001]{abran2001guide}
+\abntrefinfo{Abran e Moore}{ABRAN; MOORE}{2001}
+{ABRAN, A.; MOORE, J. \emph{Guide to the Software Engineering Body of
+  Knowledge: Trial Version}. IEEE Computer Society, 2001.
+ISBN 9780769510002. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=YqVQAAAAMAAJ}.}
+
+\bibitem[D'Souza 1999]{Dsouza}
+\abntrefinfo{D'Souza}{D'SOUZA}{1999}
+{D'SOUZA, D. \emph{Components and Frameworks with UML, The Catalysis Approach}.
+  [S.l.: s.n.], 1999.}
+
+\bibitem[Gancarz 1995]{gancarz1995unix}
+\abntrefinfo{Gancarz}{GANCARZ}{1995}
+{GANCARZ, M. \emph{The UNIX Philosophy}. Elsevier Science, 1995.
+ISBN 9781555581237. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=0Ktl1bB-vksC}.}
+
+\bibitem[Juana-Espinosa 2011]{de2011human}
+\abntrefinfo{Juana-Espinosa}{JUANA-ESPINOSA}{2011}
+{JUANA-ESPINOSA, S. de. \emph{Human Resource Management in the Digital Economy:
+  Creating Synergy between Competency Models and Information: Creating Synergy
+  between Competency Models and Information}. Information Science Reference,
+  2011.  (Advances in Human Resources Management and Organizational Development
+  (2327-3372)).
+ISBN 9781613502082. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=wWYJx453Oy0C}.}
+
+\bibitem[Kerzner 2002]{do2015fundamentos}
+\abntrefinfo{Kerzner}{KERZNER}{2002}
+{KERZNER. \emph{Fundamentos do gerenciamento de projetos}. Editora FGV, 2002.
+  (FGV Management).
+ISBN 9788522515073. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=\\_CmHCgAAQBAJ}.}
+
+\bibitem[PEDRICZ 1995]{pressman}
+\abntrefinfo{PEDRICZ}{PEDRICZ}{1995}
+{PEDRICZ, P. \emph{Engenharia De Software}. 1. ed. [S.l.]: Makron Books, 1995.}
+
+\bibitem[Sommerville 2019]{sommerville2019engenharia}
+\abntrefinfo{Sommerville}{SOMMERVILLE}{2019}
+{SOMMERVILLE, I. \emph{Engenharia De Software}. PEARSON BRASIL, 2019.
+ISBN 9788543024974. Dispon{\'\i}vel em:
+  \url{https://books.google.com.br/books?id=tfivwwEACAAJ}.}
+
+\bibitem[Sutherland 2013]{scrum-guide}
+\abntrefinfo{Sutherland}{SUTHERLAND}{2013}
+{SUTHERLAND, K.~S. e J. \emph{Guia Do Scrum}. 2013. Scrumguides.
+Dispon{\'\i}vel em:
+  \url{https://www.scrumguides.org/docs/scrumguide/v1/Scrum-Guide-Portuguese-BR.pdf}.
+  Acesso em: 04 nov 2020.}
+
+\bibitem[Szyperski 2002]{Szyperski}
+\abntrefinfo{Szyperski}{SZYPERSKI}{2002}
+{SZYPERSKI, C. \emph{omponent Software: Beyond Object-Oriented Programming}. 1.
+  ed. [S.l.]: Makron Books, 2002.}
+
+\end{thebibliography}
