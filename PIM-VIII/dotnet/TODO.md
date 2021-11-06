@@ -1,0 +1,5 @@
+Comandos.
+
+dotnet new mvc
+
+
