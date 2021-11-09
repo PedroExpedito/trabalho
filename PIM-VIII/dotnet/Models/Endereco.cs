@@ -21,6 +21,17 @@ namespace trabalho.Models
       this.estado = estado;
 
     }
+    public  Endereco( string logradouro, int numero,
+        string cep, string bairro, string cidade, string estado) {
+      this.logradouro = logradouro;
+      this.numero = numero;
+      this.cep = cep;
+      this.bairro = bairro;
+      this.cidade = cidade;
+      this.estado = estado;
+
+    }
+
     public override string ToString() {
       return $"id: {id}, logradouro: {logradouro}, numero: {numero}, cep: {cep} bairro: {bairro}, cidade: {cidade}, estado: {estado}";
     }

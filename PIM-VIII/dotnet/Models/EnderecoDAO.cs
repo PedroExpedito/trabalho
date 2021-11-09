@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
@@ -44,11 +45,11 @@ namespace trabalho.Models
     public void update(Endereco entity){
     }
 
-    public void create(Endereco entity) {
+    public int create(Endereco entity) {
       var command = connection.CreateCommand();
       command.CommandText =  @"insert
         into endereco (logradouro, numero, cep, bairro, cidade, estado) values(
-            $logradouro, $numero, $cep, $bairro, $cidade, $estado);";
+            $logradouro, $numero, $cep, $bairro, $cidade, $estado); SELECT last_insert_rowid()";
 
       command.Parameters.AddWithValue("$logradouro", entity.logradouro);
       command.Parameters.AddWithValue("$numero", entity.numero);
@@ -57,18 +58,8 @@ namespace trabalho.Models
       command.Parameters.AddWithValue("$cidade", entity.cidade);
       command.Parameters.AddWithValue("$estado", entity.estado);
 
-      command.ExecuteNonQuery();
-
-    }
-
-
-    public EnderecoDAO()
-    {
-      connection.Open();
-    }
-    ~EnderecoDAO()
-    {
-      connection.Close();
+      int id = Convert.ToInt16(command.ExecuteScalar());
+      return id;
     }
 
     public List<Endereco>  getAll() {

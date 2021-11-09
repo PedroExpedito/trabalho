@@ -4,34 +4,36 @@ using Microsoft.Data.Sqlite;
 
 namespace trabalho.Models
 {
-    public class PessoaDAO
+    public class PessoaDAO : IGenericDAO<Pessoa>
     {
         private List<Pessoa> Pessoas = new List<Pessoa>();
         private SqliteConnection connection = Connection.getConnection();
 
-
-        public PessoaDAO()
-        {
-            connection.Open();
+        public void update(Pessoa p) {
         }
-        ~PessoaDAO()
-        {
-            connection.Close();
+        public Pessoa get(int id) {
+          return null;
         }
-
-        public void addPessoa(Pessoa p)
+        public int create(Pessoa p)
         {
+
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            int endereco_id = enderecoDAO.create(p.endereco);
+
             var command = connection.CreateCommand();
             command.CommandText = @"
-        INSERT INTO pessoa ( nome, cpf) VALUES ( $nome, $cpf)
+        INSERT INTO pessoa ( nome, cpf, endereco) VALUES ( $nome, $cpf, $endereco); SELECT last_insert_rowid()
         ";
             command.Parameters.AddWithValue("$nome", p.nome);
             command.Parameters.AddWithValue("$cpf", p.cpf);
+            command.Parameters.AddWithValue("$endereco", endereco_id);
 
-            command.ExecuteNonQuery();
+            int id = Convert.ToInt16(command.ExecuteScalar());
+
+            return id;
         }
 
-        public void deletePessoaById(int id)
+        public void remove(int id)
         {
             try
             {
@@ -50,7 +52,7 @@ namespace trabalho.Models
 
         }
 
-        public List<Pessoa> getPessoas()
+        public List<Pessoa> getAll()
         {
             var command = connection.CreateCommand();
 

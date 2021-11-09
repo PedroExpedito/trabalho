@@ -1,10 +1,19 @@
 namespace trabalho.Models {
   public class  TelefoneTipo{
 
-    private int id;
-    private string tipo;
+    public int id {get; set;}
+    public string tipo {get; set;}
+
+    public TelefoneTipo(string tipo) {
+      this.tipo = tipo;
+    }
+    public TelefoneTipo(int id, string tipo) {
+      this.id = id;
+      this.tipo = tipo;
+    }
 
   }
+  
 
 }
 
