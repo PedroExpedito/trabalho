@@ -4,74 +4,78 @@ using Microsoft.Data.Sqlite;
 
 namespace trabalho.Models
 {
-    public class PessoaDAO : IGenericDAO<Pessoa>
+  public class PessoaDAO : IGenericDAO<Pessoa>
+  {
+    private List<Pessoa> Pessoas = new List<Pessoa>();
+    private SqliteConnection connection = Connection.getConnection();
+
+    public bool update(Pessoa p) {
+      return false;
+    }
+    public Pessoa get(int id) {
+      return null;
+    }
+    public int create(Pessoa p)
     {
-        private List<Pessoa> Pessoas = new List<Pessoa>();
-        private SqliteConnection connection = Connection.getConnection();
 
-        public void update(Pessoa p) {
-        }
-        public Pessoa get(int id) {
-          return null;
-        }
-        public int create(Pessoa p)
-        {
+      EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-            EnderecoDAO enderecoDAO = new EnderecoDAO();
-            int endereco_id = enderecoDAO.create(p.endereco);
+      int endereco_id = enderecoDAO.create(p.endereco);
 
-            var command = connection.CreateCommand();
-            command.CommandText = @"
+      var command = connection.CreateCommand();
+      command.CommandText = @"
         INSERT INTO pessoa ( nome, cpf, endereco) VALUES ( $nome, $cpf, $endereco); SELECT last_insert_rowid()
         ";
-            command.Parameters.AddWithValue("$nome", p.nome);
-            command.Parameters.AddWithValue("$cpf", p.cpf);
-            command.Parameters.AddWithValue("$endereco", endereco_id);
+      command.Parameters.AddWithValue("$nome", p.nome);
+      command.Parameters.AddWithValue("$cpf", p.cpf);
+      command.Parameters.AddWithValue("$endereco", endereco_id);
 
-            int id = Convert.ToInt16(command.ExecuteScalar());
+      var telefones = p.telefones;
 
-            return id;
-        }
+      TelefoneDAO td = new TelefoneDAO(); 
 
-        public void remove(int id)
-        {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = @"DELETE FROM pessoa WHERE id=$id";
+      if( telefones != null) {
+      foreach(Telefone t in telefones) {
+         td.create(t);
+       }
+      }
 
-                command.Parameters.AddWithValue("$id", id);
-                int affectedRows = command.ExecuteNonQuery();
-                Console.WriteLine(affectedRows);
-            }
-            catch (Exception x)
-            {
-                Console.WriteLine(x.Message);
-                Console.WriteLine("CHEGO");
-            }
+      int id = Convert.ToInt16(command.ExecuteScalar());
 
-        }
-
-        public List<Pessoa> getAll()
-        {
-            var command = connection.CreateCommand();
-
-            command.CommandText =
-              @"
-        SELECT * FROM PESSOA;
-        ";
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var id = reader.GetInt16(0);
-                    var nome = reader.GetString(1);
-                    var cpf = reader.GetString(2);
-                    Pessoas.Add(new Pessoa(id, nome, cpf, null, null));
-                }
-            }
-            return Pessoas;
-        }
+      return id;
     }
+
+    public bool remove(int id)
+    {
+      var command = connection.CreateCommand();
+      command.CommandText = @"DELETE FROM pessoa WHERE id=$id";
+
+      command.Parameters.AddWithValue("$id", id);
+      int affectedRows = command.ExecuteNonQuery();
+      
+      return affectedRows == 0 ? false : true;
+    }
+
+    public List<Pessoa> getAll()
+    {
+      var command = connection.CreateCommand();
+
+      command.CommandText =
+        @"
+        SELECT * FROM PESSOA;
+      ";
+      using (var reader = command.ExecuteReader())
+      {
+        while (reader.Read())
+        {
+          var id = reader.GetInt16(0);
+          var nome = reader.GetString(1);
+          var cpf = reader.GetString(2);
+          Pessoas.Add(new Pessoa(id, nome, cpf, null, null));
+        }
+      }
+      return Pessoas;
+    }
+  }
 }
 

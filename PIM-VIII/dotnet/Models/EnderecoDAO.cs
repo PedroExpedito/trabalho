@@ -35,14 +35,16 @@ namespace trabalho.Models
     }
 
 
-    public void remove(int id) {
+    public bool remove(int id) {
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from endereco where id=$id";
       command.Parameters.AddWithValue("$id", id);
-      command.ExecuteNonQuery();
+      int affectedRows = command.ExecuteNonQuery();
+      return affectedRows == 0 ? false : true;
     }
 
-    public void update(Endereco entity){
+    public bool update(Endereco entity){
+      return false;
     }
 
     public int create(Endereco entity) {
