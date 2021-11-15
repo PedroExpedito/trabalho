@@ -13,11 +13,46 @@ namespace trabalho.Models
       return false;
     }
     public Pessoa get(int id) {
+      var command = connection.CreateCommand();
+
+      command.CommandText = @"SELECT * from pessoa where id=$id";
+      command.Parameters.AddWithValue("$id", id);
+
+      var reader = command.ExecuteReader();
+
+      if(reader.Read()) {
+        var p_id = reader.GetInt16(0);
+        var p_nome = reader.GetString(1);
+        var p_cpf = reader.GetString(2);
+        var p_endereco_id = reader.GetInt16(3);
+          
+        // conseguindo endereco
+        var enderecoDAO = new EnderecoDAO();
+        var p_endereco = enderecoDAO.get(p_endereco_id);
+
+        // criando pessoa
+        var pessoa = new Pessoa(p_id, p_nome, p_cpf, p_endereco);
+
+        // conseguindo lista de telefones
+        var pessoa_telefoneDAO = new PessoaTelefoneDAO();
+
+        var pessoa_telefoneList = pessoa_telefoneDAO.get(p_id);
+
+
+        var telefoneDAO = new TelefoneDAO();
+
+        foreach(PessoaTelefone pessoaTelefone in pessoa_telefoneList) {
+          var telefone = telefoneDAO.get(pessoaTelefone.id_telefone);
+          pessoa.telefones.Add(telefone);
+        }
+        return pessoa;
+      }
+
       return null;
     }
+
     public int create(Pessoa p)
     {
-
       EnderecoDAO enderecoDAO = new EnderecoDAO();
 
       int endereco_id = enderecoDAO.create(p.endereco);
@@ -34,13 +69,19 @@ namespace trabalho.Models
 
       TelefoneDAO td = new TelefoneDAO(); 
 
-      if( telefones != null) {
-      foreach(Telefone t in telefones) {
-         td.create(t);
-       }
-      }
 
       int id = Convert.ToInt16(command.ExecuteScalar());
+
+      p.id = id;
+
+      if( telefones != null) {
+      var pessoaTelefoneDAO = new PessoaTelefoneDAO();
+      foreach(Telefone t in telefones) {
+         td.create(t);
+         var pessoa_telefone = new PessoaTelefone(p.id,t.id);
+         pessoaTelefoneDAO.create(pessoa_telefone);
+       }
+      }
 
       return id;
     }
@@ -58,23 +99,7 @@ namespace trabalho.Models
 
     public List<Pessoa> getAll()
     {
-      var command = connection.CreateCommand();
-
-      command.CommandText =
-        @"
-        SELECT * FROM PESSOA;
-      ";
-      using (var reader = command.ExecuteReader())
-      {
-        while (reader.Read())
-        {
-          var id = reader.GetInt16(0);
-          var nome = reader.GetString(1);
-          var cpf = reader.GetString(2);
-          Pessoas.Add(new Pessoa(id, nome, cpf, null, null));
-        }
-      }
-      return Pessoas;
+      return null;
     }
   }
 }

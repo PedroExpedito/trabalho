@@ -17,7 +17,7 @@ namespace trabalho.Models
       var reader = command.ExecuteReader();
       if(reader.Read()) {
         var id_telefone = reader.GetInt16(0);
-        var numero = reader.GetInt16(1);
+        var numero = reader.GetInt32(1);
         var DDD = reader.GetInt16(2);
         var tipo_int = reader.GetInt16(3);
 

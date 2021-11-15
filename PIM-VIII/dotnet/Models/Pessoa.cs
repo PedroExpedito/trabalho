@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 
 namespace trabalho.Models
 {
@@ -11,23 +12,42 @@ namespace trabalho.Models
       public List<Telefone> telefones { get; set; }
       //public Endereco endereco { get; set; }
 
-      Pessoa() {
-        telefones = new List<Telefone>();
-      }
       public Pessoa(string nome, string cpf, Endereco endereco,
-          List<Telefone> telefones) : base() {
+          List<Telefone> telefones) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefones = telefones;
       }
       public Pessoa(int id, string nome, string cpf, Endereco endereco,
-          List<Telefone> telefones) : base() {
+          List<Telefone> telefones) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefones = telefones;
       }
+      public Pessoa(int id, string nome, string cpf, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefones = new List<Telefone>();
+      }
+
+      
+      public override string ToString() {
+        StringBuilder sb = new StringBuilder();
+        sb.Append($"Nome: {nome}, Cpf: {cpf}, \nEndereco: ");
+        sb.Append(endereco.ToString());
+        sb.Append("Telefones: \n");
+
+        foreach( Telefone e in telefones) {
+          sb.Append(e.ToString() + "\n");
+        }
+
+        return sb.ToString();
+      }
+
     }
 }

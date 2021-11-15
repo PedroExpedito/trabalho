@@ -12,6 +12,10 @@ namespace trabalho.Models {
       this.tipo = tipo;
     }
 
+    public override string ToString() {
+      return tipo;
+    }
+
   }
   
 

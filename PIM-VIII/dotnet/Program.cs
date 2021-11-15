@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using trabalho.Models;
@@ -26,24 +26,17 @@ namespace trabalho
      //
      PessoaDAO pessoaDAO = new PessoaDAO();
 
-     var telefoneTipo = new TelefoneTipo(1, "comercial");
-     var telefone = new Telefone(8374323, 43, telefoneTipo);
+     // var telefoneTipo = new TelefoneTipo(2, "comercial");
+     // var telefone = new Telefone(3,8374323, 43, telefoneTipo);
+     //
+     // List<Telefone> telefones = new List<Telefone>();
+     // telefones.Add(telefone);
+     //
+     // var pessoa = new Pessoa("Marcos","293838293", endereco1, telefones); 
+     var pessoa = pessoaDAO.get(4);
 
-     List<Telefone> telefones = new List<Telefone>();
-     telefones.Add(telefone);
+     Console.WriteLine(pessoa.ToString());
 
-     var pessoa = new Pessoa("Frederico","293838293", endereco1, telefones); 
-     pessoaDAO.create(pessoa);
-      // for ( int i = 10; i <= 17; i++) {
-      //   pessoaDAO.deletePessoaById(i);
-      // }
-      // pessoaDAO.deletePessoaById(7);
-      //
-      // var pessoas = pessoaDAO.getPessoas();
-      //
-      // foreach( var p in pessoas) {
-      //   Console.WriteLine(p.nome);
-      // }
      // CreateHostBuilder(args).Build().Run();
 
     }
