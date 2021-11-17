@@ -5,6 +5,24 @@ var pessoaDAO = new PessoaDAO();
 var pessoas = pessoaDAO.getAll();
 
 }
+
+@functions{
+
+  public string GetHello() {
+    return "Ok";
+  }
+
+}
+
+@section Scripts {
+<script>
+
+  function RazorFunction() {
+      console.log('@GetHello()');
+  }
+
+</script>
+}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,23 +30,39 @@ var pessoas = pessoaDAO.getAll();
     <title>Todas as pessoas</title>
   </head>
   <body>
-    <table border=1px>
-      @foreach ( var p in pessoas) {
-      <tr>
-        <td>@p.id</td>
-        <td>@p.nome</td>
-        <td>@p.cpf</td>
-        <td>@p.endereco.id</td>
-        <td>@p.endereco.logradouro</td>
-        <td>@p.endereco.numero</td>
-        <td>@p.endereco.cep</td>
-        <td>@p.endereco.bairro</td>
-        <td>@p.endereco.cidade</td>
-        <td>@p.endereco.estado</td>
-      </tr>
+    <button OnClick="RazorFunction()">Click</button>
+    @foreach ( var p in pessoas) {
+    <div>
+      <table border=1px>
+        <tr>
+          <td> <h3>Pessoa </h3></td>
+          <td> <strong>ID: </strong> @p.id</td>
+          <td> <strong>Nome: </strong>@p.nome</td>
+          <td> <strong>CPF:</strong>@p.cpf</td>
+        </tr>
+        <tr>
+          <td> <h3>Endereço </h3></td>
+          <td> <strong>ID: </strong>@p.endereco.id</td>
+          <td> <strong>Logradouro: </strong>@p.endereco.logradouro</td>
+          <td> <strong>Numero: </strong>@p.endereco.numero</td>
+          <td> <strong>CEP: </strong>@p.endereco.cep</td>
+          <td> <strong>Bairro: </strong>@p.endereco.bairro</td>
+          <td> <strong>Cidade: </strong>@p.endereco.cidade</td>
+          <td> <strong>Estado: </strong>@p.endereco.estado</td>
+        </tr>
+          @foreach( Telefone t in p.telefones) {
+          <tr>
+            <td><h3>Telefone</h3></td>
+            <td>( @t.DDD ) @t.numero</td>
+            <td>Tipo: @t.tipo.tipo </td>
+          </tr>
+          }
 
-      }
-    </table>
+      </table>
+      <br/>
+    </div>
+
+    }
 
   </body>
 </html>
