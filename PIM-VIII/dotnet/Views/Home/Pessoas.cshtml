@@ -1,0 +1,34 @@
+@{
+
+var pessoaDAO = new PessoaDAO();
+
+var pessoas = pessoaDAO.getAll();
+
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Todas as pessoas</title>
+  </head>
+  <body>
+    <table border=1px>
+      @foreach ( var p in pessoas) {
+      <tr>
+        <td>@p.id</td>
+        <td>@p.nome</td>
+        <td>@p.cpf</td>
+        <td>@p.endereco.id</td>
+        <td>@p.endereco.logradouro</td>
+        <td>@p.endereco.numero</td>
+        <td>@p.endereco.cep</td>
+        <td>@p.endereco.bairro</td>
+        <td>@p.endereco.cidade</td>
+        <td>@p.endereco.estado</td>
+      </tr>
+
+      }
+    </table>
+
+  </body>
+</html>

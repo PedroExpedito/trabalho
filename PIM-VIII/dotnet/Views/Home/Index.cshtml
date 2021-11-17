@@ -15,12 +15,15 @@ var nome = p.ToString();
     <title></title>
   </head>
   <header>
-    <h1>@nome</h1>
+    <!-- <h1>@nome</h1> -->
   </header>
   <body class="body">
 
     <form action="api/pessoa" method="post" enctype="multipart/form-data">
 
+      <div>
+        <strong>Pessoa</strong>
+      </div>
       <div>
         <label for="nome">Nome:</label>
         <input type="text" id= "nome"  name="nome"/>
@@ -28,6 +31,9 @@ var nome = p.ToString();
       <div>
         <label for="CPF">CPF:</label>
         <input type="text" name= "cpf" />
+      </div>
+      <div>
+        <strong> Endereço </strong>
       </div>
 
       <div>
@@ -57,8 +63,20 @@ var nome = p.ToString();
       </div>
 
       <div>
-        <label>Telefone</label>
-        <input type="text" name="telefone"/>
+        <strong>Telefone</strong>
+      </div>
+
+      <div>
+        <label>Numero</label>
+        <input type="number" name="t_numero"/>
+      </div>
+      <div>
+        <label>DDD</label>
+        <input type="number" name="ddd"/>
+      </div>
+      <div>
+        <label>Tipo</label>
+        <input type="text" name="tipo"/>
       </div>
       <div>
         <input type="submit" value="Submit" />

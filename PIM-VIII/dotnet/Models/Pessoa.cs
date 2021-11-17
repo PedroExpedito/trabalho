@@ -34,6 +34,12 @@ namespace trabalho.Models
         this.endereco = endereco;
         this.telefones = new List<Telefone>();
       }
+      public Pessoa(string nome, string cpf, Endereco endereco) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefones = new List<Telefone>();
+      }
 
       
       public override string ToString() {

@@ -86,11 +86,12 @@ namespace trabalho.Models
 
       int numero = entity.numero;
       int DDD = entity.DDD;
-      int tipo_id = entity.tipo.id;
 
-      // TelefoneTipoDAO TTD = new TelefoneTipoDAO();
-      //
-      // TTD.create(entity.tipo);
+      TelefoneTipoDAO TTD = new TelefoneTipoDAO();
+
+     int tipo_id= TTD.create(entity.tipo);
+     entity.id = tipo_id;
+
 
       command.CommandText =  @"insert into telefone (numero, ddd, tipo) VALUES ($numero, $ddd, $tipo); SELECT last_insert_rowid()";
       command.Parameters.AddWithValue("$numero", numero);

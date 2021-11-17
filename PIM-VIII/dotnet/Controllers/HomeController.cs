@@ -20,6 +20,10 @@ namespace trabalho.Controllers
         {
             return View();
         }
+        public IActionResult Pessoas()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
