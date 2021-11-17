@@ -38,7 +38,7 @@ namespace trabalho.Models
       
       public override string ToString() {
         StringBuilder sb = new StringBuilder();
-        sb.Append($"Nome: {nome}, Cpf: {cpf}, \nEndereco: ");
+        sb.Append($"Id: {id}, Nome: {nome}, Cpf: {cpf}, \nEndereco: ");
         sb.Append(endereco.ToString());
         sb.Append("Telefones: \n");
 

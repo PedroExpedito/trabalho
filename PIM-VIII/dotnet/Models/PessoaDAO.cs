@@ -99,7 +99,17 @@ namespace trabalho.Models
 
     public List<Pessoa> getAll()
     {
-      return null;
+      var command = connection.CreateCommand();
+      command.CommandText = @"SELECT id FROM pessoa;";
+      var reader = command.ExecuteReader();
+
+      while(reader.Read()) {
+        var id = reader.GetInt32(0);
+        var pessoa = get(id);
+        Pessoas.Add(pessoa);
+      }
+
+      return Pessoas;
     }
   }
 }

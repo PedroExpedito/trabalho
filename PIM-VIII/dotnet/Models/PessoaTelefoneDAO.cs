@@ -9,7 +9,6 @@ namespace trabalho.Models {
     private SqliteConnection connection = Connection.getConnection();
 
 
-
     // retorna uma lista com todos os telefones de uma pessoa
     public List<PessoaTelefone> get(int id){
       var command = connection.CreateCommand();
@@ -28,31 +27,13 @@ namespace trabalho.Models {
       return pessoaTelefones;
     }
 
-    public List<PessoaTelefone> getAll(){
-       var command = connection.CreateCommand();
-
-      command.CommandText = @"SELECT * FROM telefone_tipo;";
-      using ( var reader = command.ExecuteReader()) {
-        while (reader.Read()) {
-          var id = reader.GetInt16(0);
-          var tipo = reader.GetString(1);
-          var telefoneTipo = new TelefoneTipo(id, tipo);
-          telefoneTipos.Add(telefoneTipo);
-        }
-      }
-      return null;
-    }
-
-    public bool remove(int id){
+    // remove um telefone de uma pessoa
+    public bool remove(PessoaTelefone p){
       var command = connection.CreateCommand();
-      command.CommandText =  @"delete from telefone_tipo where id=$id";
-      command.Parameters.AddWithValue("$id", id);
+      command.CommandText =  @"delete from pessoa_telefone where id_pessoa=$id_pessoa AND id_telefone=$id_telefone;";
+      command.Parameters.AddWithValue("$id_pessoa", p.id_pessoa);
+      command.Parameters.AddWithValue("$id_telefone", p.id_telefone);
       return command.ExecuteNonQuery() == 0 ? false : true;
-    }
-
-    public bool update(PessoaTelefone entity) {
-      var command = connection.CreateCommand();
-      return false; 
     }
 
     public int create(PessoaTelefone entity){

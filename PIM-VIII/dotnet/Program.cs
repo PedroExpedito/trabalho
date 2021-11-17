@@ -14,7 +14,7 @@ namespace trabalho
      //
      // var enderecos = enderecoDAO.getAll();
      //
-     var endereco1 = new Endereco("HASDAS", 1, "863782", "centro", "cafesal", "parana");
+     // var endereco1 = new Endereco("HASDAS", 1, "863782", "centro", "cafesal", "parana");
      // enderecoDAO.remove(1);
      // enderecoDAO.create(endereco1);
      //
@@ -33,11 +33,13 @@ namespace trabalho
      // telefones.Add(telefone);
      //
      // var pessoa = new Pessoa("Marcos","293838293", endereco1, telefones); 
-     var pessoa = pessoaDAO.get(4);
+     var pessoas = pessoaDAO.getAll();
 
-     Console.WriteLine(pessoa.ToString());
+     foreach( Pessoa p in pessoas) {
+      Console.WriteLine(p.ToString());
+     }
 
-     // CreateHostBuilder(args).Build().Run();
+     CreateHostBuilder(args).Build().Run();
 
     }
 

@@ -1,5 +1,12 @@
 ﻿@{
 ViewData["Title"] = "PIM VIII";
+
+
+
+var pessoaDAO = new PessoaDAO();
+var p = pessoaDAO.get(1);
+
+var nome = p.ToString();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +14,11 @@ ViewData["Title"] = "PIM VIII";
     <meta charset="UTF-8">
     <title></title>
   </head>
+  <header>
+    <h1>@nome</h1>
+  </header>
   <body class="body">
+
     <form action="api/pessoa" method="post" enctype="multipart/form-data">
 
       <div>

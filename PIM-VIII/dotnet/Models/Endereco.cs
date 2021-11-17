@@ -33,7 +33,7 @@ namespace trabalho.Models
     }
 
     public override string ToString() {
-      return $"id: {id}, logradouro: {logradouro}, numero: {numero}, cep: {cep} bairro: {bairro}, cidade: {cidade}, estado: {estado}";
+      return $"id: {id}, logradouro: {logradouro}, numero: {numero}, cep: {cep} bairro: {bairro}, cidade: {cidade}, estado: {estado}\n";
     }
   }
 
