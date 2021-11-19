@@ -15,13 +15,7 @@ namespace trabalho.Models
       EnderecoDAO enderecoDAO = new EnderecoDAO();
       enderecoDAO.update(p.endereco);
 
-      TelefoneDAO telefoneDAO = new TelefoneDAO();
-
-      foreach(Telefone t in p.telefones) {
-        telefoneDAO.update(t);
-      }
-      PessoaTelefoneDAO pessoaTelefoneDAO = new PessoaTelefoneDAO();
-
+      // TODO falta telefone
       // por ultimo
       command.CommandText = @"UPDATE pessoa SET nome=$nome, cpf=$cpf, endereco=$endereco where id=$id";
 
