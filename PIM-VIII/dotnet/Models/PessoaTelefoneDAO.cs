@@ -8,6 +8,11 @@ namespace trabalho.Models {
     public List<TelefoneTipo> telefoneTipos  = new List<TelefoneTipo>();
     private SqliteConnection connection = Connection.getConnection();
 
+    public bool update(PessoaTelefone pt) {
+      var command = connection.CreateCommand();
+      
+      return false;
+    }
 
     // retorna uma lista com todos os telefones de uma pessoa
     public List<PessoaTelefone> get(int id){
@@ -18,6 +23,7 @@ namespace trabalho.Models {
       var reader =  command.ExecuteReader();
 
       List<PessoaTelefone> pessoaTelefones = new List<PessoaTelefone>();
+
       while (reader.Read()) {
         var id_pessoa = reader.GetInt16(0);
         var id_telefone = reader.GetInt16(1);

@@ -6,6 +6,8 @@ namespace trabalho.Models {
     public int DDD {get; set; }
     public TelefoneTipo tipo {get; set; }
 
+    public Telefone() {}
+
     public Telefone(int numero, int DDD, TelefoneTipo tipo) {
       this.numero = numero;
       this.DDD = DDD;

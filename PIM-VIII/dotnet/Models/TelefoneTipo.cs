@@ -4,6 +4,8 @@ namespace trabalho.Models {
     public int id {get; set;}
     public string tipo {get; set;}
 
+    public TelefoneTipo() {}
+
     public TelefoneTipo(string tipo) {
       this.tipo = tipo;
     }

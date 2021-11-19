@@ -34,39 +34,55 @@ namespace trabalho.Controllers
 
     [HttpPut]
     public IActionResult updatePessoa([FromBody] Pessoa pessoa) {
-      return null;
+      if(!pessoaDAO.update(pessoa)) {
+        Response.StatusCode = 404;
+        return Json(new { Message = "User not found" });
+      }
+      return Json(new { Message = "User Updated" });
     }
-
 
     [HttpPost]
-    public String postComplex(IFormCollection collection) {
-      string nome = collection["nome"].ToString();
-      string cpf = collection["cpf"].ToString();
-      string logradouro = collection["logradouro"].ToString();
-      int numero = Convert.ToInt32(collection["numero"].ToString());
-      string cep = collection["cep"].ToString();
-      string bairro = collection["bairro"].ToString();
-      string cidade = collection["cidade"].ToString();
-      string estado = collection["estado"].ToString();
-      int t_numero = Convert.ToInt32(collection["t_numero"].ToString());
-      int DDD = Convert.ToInt32(collection["ddd"].ToString());
-      string tipo = collection["tipo"].ToString();
+    public IActionResult createPessoa([FromBody] Pessoa pessoa) {
 
-      TelefoneTipo tTipo = new TelefoneTipo(tipo);
+      int id = pessoaDAO.create(pessoa); 
 
-      Endereco e = new Endereco(logradouro, numero, cep, bairro, cidade, estado);
-
-      Telefone t = new Telefone(numero,DDD,tTipo);
-
-
-      Pessoa p = new Pessoa(nome, cpf, e);
-      p.telefones.Add(t);
-
-      pessoaDAO.create(p);
-
-      return "Sucesso";
+      if(id > 0) {
+        return Json(new { id = id });
+      }
+      Response.StatusCode = 500;
+      return Json(new { Message = "Error" });
     }
 
+
+    // [HttpPost]
+    // public String postComplex(IFormCollection collection) {
+    //   string nome = collection["nome"].ToString();
+    //   string cpf = collection["cpf"].ToString();
+    //   string logradouro = collection["logradouro"].ToString();
+    //   int numero = Convert.ToInt32(collection["numero"].ToString());
+    //   string cep = collection["cep"].ToString();
+    //   string bairro = collection["bairro"].ToString();
+    //   string cidade = collection["cidade"].ToString();
+    //   string estado = collection["estado"].ToString();
+    //   int t_numero = Convert.ToInt32(collection["t_numero"].ToString());
+    //   int DDD = Convert.ToInt32(collection["ddd"].ToString());
+    //   string tipo = collection["tipo"].ToString();
+    //
+    //   TelefoneTipo tTipo = new TelefoneTipo(tipo);
+    //
+    //   Endereco e = new Endereco(logradouro, numero, cep, bairro, cidade, estado);
+    //
+    //   Telefone t = new Telefone(numero,DDD,tTipo);
+    //
+    //
+    //   Pessoa p = new Pessoa(nome, cpf, e);
+    //   p.telefones.Add(t);
+    //
+    //   pessoaDAO.create(p);
+    //
+    //   return "Sucesso";
+    // }
+    //
     
 
 

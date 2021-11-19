@@ -64,19 +64,19 @@ namespace trabalho.Models
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public bool update(Telefone entity){
+    public bool update(Telefone t){
 
-      var id = entity.id;
-      var numero = entity.numero;
-      var DDD = entity.DDD;
-      var tipo = entity.tipo.id;
+      TelefoneTipoDAO telefoneTipoDAO = new TelefoneTipoDAO();
+      //
+      telefoneTipoDAO.update(t.tipo);
 
       var command = connection.CreateCommand();
-      command.CommandText =  @"UPDATE telefone SET numero=$numero, ddd=$ddd tipo=$tipo where id=$id";
-      command.Parameters.AddWithValue("$id", id);
-      command.Parameters.AddWithValue("$numero", numero);
-      command.Parameters.AddWithValue("$ddd", DDD);
-      command.Parameters.AddWithValue("$tipo", tipo);
+      command.CommandText =  @"UPDATE telefone SET numero=$numero, ddd=$ddd, tipo=$tipo where id=$id";
+      command.Parameters.AddWithValue("$id", t.id);
+      command.Parameters.AddWithValue("$numero",t.numero);
+      command.Parameters.AddWithValue("$ddd", t.DDD);
+      command.Parameters.AddWithValue("$tipo", t.tipo.id);
+      //
       return command.ExecuteNonQuery() == 0 ? false : true;
 
     } 
