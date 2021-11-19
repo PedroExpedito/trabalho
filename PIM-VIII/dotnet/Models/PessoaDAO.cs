@@ -88,6 +88,12 @@ namespace trabalho.Models
 
     public bool remove(int id)
     {
+
+      PessoaTelefoneDAO pessoaTelefoneDAO = new PessoaTelefoneDAO();
+
+      pessoaTelefoneDAO.remove(id);
+
+
       var command = connection.CreateCommand();
       command.CommandText = @"DELETE FROM pessoa WHERE id=$id";
 

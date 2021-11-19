@@ -1,10 +1,10 @@
 namespace trabalho.Models {
   public class  Telefone{
 
-    public int id;
-    public int numero;
-    public int DDD;
-    public TelefoneTipo tipo;
+    public int id {get; set; }
+    public int numero {get; set; }
+    public int DDD {get; set; }
+    public TelefoneTipo tipo {get; set; }
 
     public Telefone(int numero, int DDD, TelefoneTipo tipo) {
       this.numero = numero;

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using trabalho.Models;
 
+
 namespace trabalho.Controllers
 {
     [Route("api/pessoa")]
@@ -12,6 +13,30 @@ namespace trabalho.Controllers
   {
 
     PessoaDAO pessoaDAO = new PessoaDAO();
+
+    [HttpGet("{id}")]
+    public IActionResult getPessoa([FromRoute] int id) {
+     Pessoa pessoa = pessoaDAO.get(id);
+     if(pessoa == null) {
+       Response.StatusCode = 404;
+       return Json(new { Message = "User not found" });
+     }
+     return Json(pessoa); 
+    }
+    [HttpDelete("{id}")]
+    public IActionResult deletePessoa([FromRoute] int id) {
+      if(!pessoaDAO.remove(id)) {
+        Response.StatusCode = 404;
+        return Json(new { Message = "User not found" });
+      }
+      return Json(new { Message = "User deleted" });
+    }
+
+    [HttpPut]
+    public IActionResult updatePessoa([FromBody] Pessoa pessoa) {
+      return null;
+    }
+
 
     [HttpPost]
     public String postComplex(IFormCollection collection) {
@@ -38,9 +63,11 @@ namespace trabalho.Controllers
       p.telefones.Add(t);
 
       pessoaDAO.create(p);
-      
+
       return "Sucesso";
     }
+
+    
 
 
   }

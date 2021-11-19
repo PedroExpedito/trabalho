@@ -28,11 +28,10 @@ namespace trabalho.Models {
     }
 
     // remove um telefone de uma pessoa
-    public bool remove(PessoaTelefone p){
+    public bool remove(int id){
       var command = connection.CreateCommand();
-      command.CommandText =  @"delete from pessoa_telefone where id_pessoa=$id_pessoa AND id_telefone=$id_telefone;";
-      command.Parameters.AddWithValue("$id_pessoa", p.id_pessoa);
-      command.Parameters.AddWithValue("$id_telefone", p.id_telefone);
+      command.CommandText =  @"delete from pessoa_telefone where id_pessoa=$id_pessoa;";
+      command.Parameters.AddWithValue("$id_pessoa", id);
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
