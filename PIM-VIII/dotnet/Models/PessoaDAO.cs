@@ -118,6 +118,9 @@ namespace trabalho.Models
       
       return affectedRows == 0 ? false : true;
     }
+    public List<Pessoa> getAll() {
+      return null;
+    }
   }
 }
 
