@@ -1,91 +1,76 @@
-﻿@{
-ViewData["Title"] = "PIM VIII";
+﻿<div class="formSub">
+  <form action="api/pessoa" method="post" enctype="multipart/form-data">
+    <div class="title">Seja bem-vindo(a)</div>
+    <div class="subtitle">Vamos fazer um cadastro!</div>
+
+    <div class="input-container ic1">
+      <input id="nome" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="nome" id="nome" name="nome" class="placeholder">Nome</label>
+    </div>
+
+    <div class="input-container ic1">
+      <input id="CPF" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="CPF" type="text" name="cpf" class="placeholder">CPF</label>
+    </div>
+
+    <div class="input-container ic1">
+      <input id="endereco" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+
+      <div id="endereco">Endereço</div>
+
+      <strong id="endereco"> Endereço </strong>
+
+      <label for="logradouro" type="text" name="logradouro" class="placeholder">Logradouro</label>
+    </div>
+
+    <div class="input-container ic1">
+      <input id="numero" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="numero" type="number" name="numero" class="placeholder">Numero</label>
+    </div>
+
+    <div class="input-container ic2">
+      <input id="cep" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="cep" type="text" name="cep" class="placeholder">CEP</label>
+    </div>
+
+    <div class="input-container ic2">
+      <input id="bairro" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="bairro" type="text" name="bairro" class="placeholder">Bairro</label>
+    </div>
+
+    <div class="input-container ic2">
+      <input id="cidade" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="cidade" type="text" name="cidade" class="placeholder">Cidade</label>
+    </div>
+
+    <div class="input-container ic2">
+      <input id="estado" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="estado" type="text" name="estado" class="placeholder">Estado</label>
+    </div>
+
+    <strong id="telefones">Telefone</strong>
+
+    <div class="input-container ic2">
+      <input id="numero" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="numero" type="number" name="t_numero" class="placeholder">Numero</label>
+    </div>
+
+    <div class="input-container ic2">
+      <input id="tipo" class="input" type="text" placeholder=" " />
+      <div class="cut"></div>
+      <label for="tipo" type="text" name="tipo" class="placeholder">Tipo</label>
+    </div>
 
 
-
-var pessoaDAO = new PessoaDAO();
-var p = pessoaDAO.get(1);
-
-var nome = p.ToString();
-}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title></title>
-  </head>
-  <header>
-    <!-- <h1>@nome</h1> -->
-  </header>
-  <body class="body">
-
-    <form action="api/pessoa" method="post" enctype="multipart/form-data">
-
-      <div>
-        <strong>Pessoa</strong>
-      </div>
-      <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id= "nome"  name="nome"/>
-      </div>
-      <div>
-        <label for="CPF">CPF:</label>
-        <input type="text" name= "cpf" />
-      </div>
-      <div>
-        <strong> Endereço </strong>
-      </div>
-
-      <div>
-        <label for="logradouro">logradouro:</label>
-        <input type="text" name= "logradouro" />
-      </div>
-
-      <div>
-        <label>Numero:</label>
-        <input type="number" name="numero" />
-      </div>
-      <div>
-        <label>CEP:</label>
-        <input type="text" name="cep" />
-      </div>
-      <div>
-        <label>Bairro</label>
-        <input type="text" name="bairro" />
-      </div>
-      <div>
-        <label>Cidade</label>
-        <input type="text" name="cidade" />
-      </div>
-      <div>
-        <label>Estado</label>
-        <input type="text" name="estado" />
-      </div>
-
-      <div id="telefones">
-        <strong>Telefone</strong>
-
-        <div>
-          <label>Numero</label>
-          <input type="number" name="t_numero"/>
-        </div>
-        <div>
-          <label>DDD</label>
-          <input type="number" name="ddd"/>
-        </div>
-        <div>
-          <label>Tipo</label>
-          <input type="text" name="tipo"/>
-        </div>
-        <div>
-          <input type="submit" value="Submit" />
-        </div>
-
-      </div>
-    </form>
-    <script>
-      console.log("OI");
-    </script>
-  </body>
-</html>
-
+  </form>
+  <button type="submit" class="submit">Enviar</button>
+</div>
