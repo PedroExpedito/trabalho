@@ -3,8 +3,25 @@
 
 // Write your JavaScript code.
 //
-console.log("OI");
+//
+const deletePessoaForm = document.getElementById("delete-pessoa");
 
-var telefones = document.getElementById("telefones");
+deletePessoaForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-console.log(telefones);
+  const formData = new FormData(this);
+
+  const id = formData.get('id');
+
+  fetch("/api/pessoa/"+id, {
+    method: 'delete',
+
+  }).then(function (response) {
+    return response.text();
+  }).then(function (text) {
+    if(text != "") {
+      window.location.assign("/");
+    }
+  })
+
+});

@@ -6,6 +6,7 @@ var pessoas = pessoaDAO.getAll();
 
 }
 
+<<<<<<< HEAD
 @functions{
 
   public string GetHello() {
@@ -21,6 +22,8 @@ var pessoas = pessoaDAO.getAll();
   }
 </script>
 }
+=======
+>>>>>>> old
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,29 +31,44 @@ var pessoas = pessoaDAO.getAll();
     <title>Todas as pessoas</title>
   </head>
   <body>
-    <button OnClick="RazorFunction()">Click</button>
+    <div id="tabelas">
     @foreach ( var p in pessoas) {
     <div>
-      <table border=1px>
+      <table id="pessoas">
         <tr>
-          <td> <h3>Pessoa </h3></td>
-          <td> <strong>ID: </strong> @p.id</td>
-          <td> <strong>Nome: </strong>@p.nome</td>
-          <td> <strong>CPF:</strong>@p.cpf</td>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>CPF</th>
         </tr>
         <tr>
-          <td> <h3>Endereço </h3></td>
-          <td> <strong>ID: </strong>@p.endereco.id</td>
-          <td> <strong>Logradouro: </strong>@p.endereco.logradouro</td>
-          <td> <strong>Numero: </strong>@p.endereco.numero</td>
-          <td> <strong>CEP: </strong>@p.endereco.cep</td>
-          <td> <strong>Bairro: </strong>@p.endereco.bairro</td>
-          <td> <strong>Cidade: </strong>@p.endereco.cidade</td>
-          <td> <strong>Estado: </strong>@p.endereco.estado</td>
+          <td>@p.id</td>
+          <td>@p.nome</td>
+          <td>@p.cpf</td>
         </tr>
+        <tr>
+          <th>Logradouro</th>
+          <th>Numero</th>
+          <th>CEP</th>
+          <th>Bairro</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+        </tr>
+        <tr>
+          <td>@p.endereco.logradouro</td>
+          <td>@p.endereco.numero</td>
+          <td>@p.endereco.cep</td>
+          <td>@p.endereco.bairro</td>
+          <td>@p.endereco.cidade</td>
+          <td>@p.endereco.estado</td>
+        </tr>
+        @if(p.telefones.Count > 0) {
+        <tr>
+          <th>Numero</th>
+          <th>Tipo</th>
+        </tr>
+        }
           @foreach( Telefone t in p.telefones) {
           <tr>
-            <td><h3>Telefone</h3></td>
             <td>( @t.DDD ) @t.numero</td>
             <td>Tipo: @t.tipo.tipo </td>
           </tr>
@@ -61,6 +79,6 @@ var pessoas = pessoaDAO.getAll();
     </div>
 
     }
-
+  </div>
   </body>
 </html>
