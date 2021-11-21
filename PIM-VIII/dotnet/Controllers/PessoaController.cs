@@ -11,6 +11,34 @@ namespace trabalho.Controllers
   public class PessoaController : Controller
   {
 
+    [HttpGet("{id}")]
+    public IActionResult getPessoa([FromRoute] int id) {
+     Pessoa pessoa = pessoaDAO.get(id);
+     if(pessoa == null) {
+       Response.StatusCode = 404;
+       return Json(new { Message = "User not found" });
+     }
+     return Json(pessoa); 
+    }
+    [HttpDelete("{id}")]
+    public IActionResult deletePessoa([FromRoute] int id) {
+      if(!pessoaDAO.remove(id)) {
+        Response.StatusCode = 404;
+        return Json(new { Message = "User not found" });
+      }
+      return Json(new { Message = "User deleted" });
+    }
+
+    [HttpPut]
+    public IActionResult updatePessoa([FromBody] Pessoa pessoa) {
+      if(!pessoaDAO.update(pessoa)) {
+        Response.StatusCode = 404;
+        return Json(new { Message = "User not found" });
+      }
+      return Json(new { Message = "User Updated" });
+    }
+
+
     PessoaDAO pessoaDAO = new PessoaDAO();
 
     [HttpPost]

@@ -1,5 +1,75 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿#tabelas {
+  margin-bottom: 100px;
+}
+#pessoas {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1px;
+}
+
+#pessoas td, #pessoas th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#pessoas tr:nth-child(even){background-color: #f2f2f2;}
+
+#pessoas tr:hover {background-color: #ddd;}
+
+#pessoas th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+form {
+  margin-bottom: 100px;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -60,7 +130,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 .footer {
   position: absolute;
@@ -69,3 +139,4 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+

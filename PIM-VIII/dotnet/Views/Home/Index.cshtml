@@ -1,12 +1,5 @@
 ﻿@{
 ViewData["Title"] = "PIM VIII";
-
-
-
-var pessoaDAO = new PessoaDAO();
-var p = pessoaDAO.get(1);
-
-var nome = p.ToString();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +8,6 @@ var nome = p.ToString();
     <title></title>
   </head>
   <header>
-    <!-- <h1>@nome</h1> -->
   </header>
   <body class="body">
 
@@ -61,10 +53,7 @@ var nome = p.ToString();
         <label>Estado</label>
         <input type="text" name="estado" />
       </div>
-
-      <div id="telefones">
         <strong>Telefone</strong>
-
         <div>
           <label>Numero</label>
           <input type="number" name="t_numero"/>
@@ -78,14 +67,9 @@ var nome = p.ToString();
           <input type="text" name="tipo"/>
         </div>
         <div>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Cadastrar" />
         </div>
-
-      </div>
     </form>
-    <script>
-      console.log("OI");
-    </script>
   </body>
 </html>
 

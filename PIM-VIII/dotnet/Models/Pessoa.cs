@@ -10,7 +10,8 @@ namespace trabalho.Models
       public string cpf { get; set; }
       public Endereco endereco { get; set;}
       public List<Telefone> telefones { get; set; }
-      //public Endereco endereco { get; set; }
+
+      public Pessoa() {}
 
       public Pessoa(string nome, string cpf, Endereco endereco,
           List<Telefone> telefones) {
@@ -20,8 +21,7 @@ namespace trabalho.Models
         this.telefones = telefones;
       }
       public Pessoa(int id, string nome, string cpf, Endereco endereco,
-          List<Telefone> telefones) {
-        this.id = id;
+          List<Telefone> telefones) { this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
