@@ -10,21 +10,7 @@ namespace trabalho.Models
     private SqliteConnection connection = Connection.getConnection();
 
     public bool update(Pessoa p) {
-      var command = connection.CreateCommand();
-
-      EnderecoDAO enderecoDAO = new EnderecoDAO();
-      enderecoDAO.update(p.endereco);
-
-      // TODO falta telefone
-      // por ultimo
-      command.CommandText = @"UPDATE pessoa SET nome=$nome, cpf=$cpf, endereco=$endereco where id=$id";
-
-      command.Parameters.AddWithValue("$id", p.id);
-      command.Parameters.AddWithValue("$nome", p.nome);
-      command.Parameters.AddWithValue("$cpf", p.cpf);
-      command.Parameters.AddWithValue("$endereco", p.endereco.id);
-
-      return command.ExecuteNonQuery() == 0 ? false : true;
+      return false;
     }
     public Pessoa get(int id) {
       var command = connection.CreateCommand();
@@ -90,13 +76,11 @@ namespace trabalho.Models
 
       if( telefones != null) {
       var pessoaTelefoneDAO = new PessoaTelefoneDAO();
-
       foreach(Telefone t in telefones) {
-         t.id = td.create(t);
+         td.create(t);
          var pessoa_telefone = new PessoaTelefone(p.id,t.id);
          pessoaTelefoneDAO.create(pessoa_telefone);
-     }
-
+       }
       }
 
       return id;
@@ -104,18 +88,10 @@ namespace trabalho.Models
 
     public bool remove(int id)
     {
-<<<<<<< HEAD
-
-=======
->>>>>>> old
       PessoaTelefoneDAO pessoaTelefoneDAO = new PessoaTelefoneDAO();
 
       pessoaTelefoneDAO.remove(id);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> old
       var command = connection.CreateCommand();
       command.CommandText = @"DELETE FROM pessoa WHERE id=$id";
 
@@ -124,8 +100,20 @@ namespace trabalho.Models
       
       return affectedRows == 0 ? false : true;
     }
-    public List<Pessoa> getAll() {
-      return null;
+
+    public List<Pessoa> getAll()
+    {
+      var command = connection.CreateCommand();
+      command.CommandText = @"SELECT id FROM pessoa;";
+      var reader = command.ExecuteReader();
+
+      while(reader.Read()) {
+        var id = reader.GetInt32(0);
+        var pessoa = get(id);
+        Pessoas.Add(pessoa);
+      }
+
+      return Pessoas;
     }
   }
 }

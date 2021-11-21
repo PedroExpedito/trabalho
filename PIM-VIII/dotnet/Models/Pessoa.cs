@@ -13,10 +13,6 @@ namespace trabalho.Models
 
       public Pessoa() {}
 
-      public Pessoa() {
-        this.telefones = new List<Telefone>();
-      }
-
       public Pessoa(string nome, string cpf, Endereco endereco,
           List<Telefone> telefones) {
         this.nome = nome;

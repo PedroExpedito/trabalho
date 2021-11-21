@@ -11,10 +11,7 @@ namespace trabalho.Models
     public string estado{get; set;}
 
     public Endereco() {}
-<<<<<<< HEAD
-=======
 
->>>>>>> old
     public  Endereco(int id,  string logradouro, int numero,
         string cep, string bairro, string cidade, string estado) {
       this.id = id;

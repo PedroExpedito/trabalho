@@ -1,17 +1,10 @@
 namespace trabalho.Models {
   public class  Telefone{
 
-<<<<<<< HEAD
-    public int id {get; set; }
-    public int numero {get; set; }
-    public int DDD {get; set; }
-    public TelefoneTipo tipo {get; set; }
-=======
     public int id{get; set;}
     public int numero{get; set;}
     public int DDD{get; set;}
     public TelefoneTipo tipo{get; set;}
->>>>>>> old
 
     public Telefone() {}
 

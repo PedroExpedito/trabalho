@@ -44,20 +44,7 @@ namespace trabalho.Models
     }
 
     public bool update(Endereco entity){
-      var command = connection.CreateCommand();
-      command.CommandText =  @"UPDATE endereco SET logradouro=$logradouro,
-        numero=$numero, cep=$cep, bairro=$bairro, cidade=$cidade,
-        estado=$estado where id=$id";
-
-      command.Parameters.AddWithValue("$id", entity.id);
-      command.Parameters.AddWithValue("$logradouro", entity.logradouro);
-      command.Parameters.AddWithValue("$numero", entity.numero);
-      command.Parameters.AddWithValue("$cep", entity.cep);
-      command.Parameters.AddWithValue("$bairro", entity.bairro);
-      command.Parameters.AddWithValue("$cidade", entity.cidade);
-      command.Parameters.AddWithValue("$estado", entity.estado);
-
-      return command.ExecuteNonQuery() == 0 ? false : true;
+      return false;
     }
 
     public int create(Endereco entity) {
