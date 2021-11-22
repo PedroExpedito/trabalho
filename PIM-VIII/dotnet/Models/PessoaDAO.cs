@@ -9,9 +9,45 @@ namespace trabalho.Models
     private List<Pessoa> Pessoas = new List<Pessoa>();
     private SqliteConnection connection = Connection.getConnection();
 
+    EnderecoDAO enderecoDAO = new EnderecoDAO();
+
+    PessoaTelefoneDAO  pessoaTelefoneDAO = new PessoaTelefoneDAO();
+
+    TelefoneDAO telefoneDAO = new TelefoneDAO();
+
     public bool update(Pessoa p) {
-      return false;
+      // o telefone é a parte mais complicada por que outras pessoas
+      // podem ter o mesmo telefone a solução é quando for criar um novo telefone 
+      // verificar se já existe igual.
+      
+      // remove todos os telfones pertencente
+      pessoaTelefoneDAO.remove(p.id);
+
+      foreach(Telefone t in p.telefones) {
+        // cria novos telfones
+        t.id = telefoneDAO.create(t);
+        // cria a associação
+        pessoaTelefoneDAO.create(new PessoaTelefone(p.id, t.id));
+      }
+
+      Pessoa pessoa = get(p.id);
+
+      if(!pessoa.endereco.Equals(p.endereco)) {
+        // Sempre cria um endereço novo
+        p.endereco.id = enderecoDAO.create(p.endereco);
+      }
+
+      var command = connection.CreateCommand();
+      command.CommandText = @"UPDATE pessoa SET nome=$nome, cpf=$cpf, endereco=$endereco WHERE id=$id";
+      command.Parameters.AddWithValue("$id", p.id);
+      command.Parameters.AddWithValue("$nome", p.nome);
+      command.Parameters.AddWithValue("$cpf", p.cpf);
+      command.Parameters.AddWithValue("$endereco", p.endereco.id);
+
+
+      return command.ExecuteNonQuery() == 0 ? false : true;
     }
+
     public Pessoa get(int id) {
       var command = connection.CreateCommand();
 

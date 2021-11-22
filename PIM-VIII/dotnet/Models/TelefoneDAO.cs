@@ -89,8 +89,8 @@ namespace trabalho.Models
 
       TelefoneTipoDAO TTD = new TelefoneTipoDAO();
 
-     int tipo_id= TTD.create(entity.tipo);
-     entity.id = tipo_id;
+      int tipo_id= TTD.create(entity.tipo);
+      entity.id = tipo_id;
 
 
       command.CommandText =  @"insert into telefone (numero, ddd, tipo) VALUES ($numero, $ddd, $tipo); SELECT last_insert_rowid()";
