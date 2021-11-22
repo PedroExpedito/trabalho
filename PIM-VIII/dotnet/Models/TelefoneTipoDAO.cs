@@ -27,7 +27,7 @@ namespace trabalho.Models {
     }
 
     public List<TelefoneTipo> getAll(){
-       var command = connection.CreateCommand();
+      var command = connection.CreateCommand();
 
       command.CommandText = @"SELECT * FROM telefone_tipo;";
       using ( var reader = command.ExecuteReader()) {
@@ -59,12 +59,31 @@ namespace trabalho.Models {
     }
 
     public int create(TelefoneTipo entity){
-      var tipo = entity.tipo;
+      try{
+        int _id = exist(entity);
+        return _id;
+      } catch(Exception e) {
+        var tipo = entity.tipo;
+        var command = connection.CreateCommand();
+        command.CommandText =  @"insert into telefone_tipo (tipo) VALUES ($tipo); SELECT last_insert_rowid()";
+        command.Parameters.AddWithValue("$tipo", tipo);
+        int id = Convert.ToInt16(command.ExecuteScalar());
+        return id;
+        throw e;
+      }
+    }
+    public int exist(TelefoneTipo tp) {
       var command = connection.CreateCommand();
-      command.CommandText =  @"insert into telefone_tipo (tipo) VALUES ($tipo); SELECT last_insert_rowid()";
-      command.Parameters.AddWithValue("$tipo", tipo);
-      int id = Convert.ToInt16(command.ExecuteScalar());
-      return id;
+      command.CommandText = @"select * from telefone_tipo where tipo=$tipo;";
+      command.Parameters.AddWithValue("$tipo", tp.tipo);
+
+      int id = 0;
+      try{
+        id = Convert.ToInt16(command.ExecuteScalar());
+        return id;
+      } catch(Exception e) {
+        throw e;
+      }
     }
 
   }

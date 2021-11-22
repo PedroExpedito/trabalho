@@ -1,3 +1,5 @@
+using System;
+
 namespace trabalho.Models
 {
   public class Endereco 
@@ -32,6 +34,18 @@ namespace trabalho.Models
       this.cidade = cidade;
       this.estado = estado;
 
+    }
+
+    public bool Equals(Endereco e) {
+      if(!this.logradouro.Equals(e.logradouro)) { return false; }
+      if(!this.numero.Equals(e.numero)) return false;
+      if(!this.cep.Equals(e.cep)) return false;
+      if(!this.bairro.Equals(e.bairro)) return false;
+      if(!this.cidade.Equals(e.cidade)) return false;
+      if(!this.estado.Equals(e.estado)) return false;
+      Console.WriteLine(this.numero + " e " + e.numero);
+
+      return true;
     }
 
     public override string ToString() {

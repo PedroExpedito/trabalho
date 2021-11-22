@@ -1,4 +1,15 @@
-﻿#tabelas {
+﻿#deletar {
+  margin-top: 50px;
+}
+.column-box {
+  display: flex;
+  flex-direction: column;
+}
+.row-box {
+  display: flex;
+  flex-direction: row;
+}
+#tabelas {
   margin-bottom: 100px;
 }
 #pessoas {
@@ -26,7 +37,7 @@
 }
 
 input, select {
-  width: 100%;
+  width: auto;
   padding: 12px 20px;
   margin: 4px 0;
   display: inline-block;

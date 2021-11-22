@@ -41,6 +41,17 @@ namespace trabalho.Controllers
 
     PessoaDAO pessoaDAO = new PessoaDAO();
 
+
+    public IActionResult criarPessoa([FromBody] Pessoa pessoa) {
+      if(pessoaDAO.create(pessoa) > 0) {;
+        return Json(pessoa);
+      } else {
+        Response.StatusCode = 404;
+        return Json(new { Message = "user not created" });
+      }
+    }
+
+
     [HttpPost]
     public String postComplex(IFormCollection collection) {
       string nome = collection["nome"].ToString();

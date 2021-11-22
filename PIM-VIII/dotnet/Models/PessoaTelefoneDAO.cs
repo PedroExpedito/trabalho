@@ -28,7 +28,7 @@ namespace trabalho.Models {
     }
 
     // remove um telefone de uma pessoa
-    public bool remove(int id){
+      public bool remove(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from pessoa_telefone where id_pessoa=$id_pessoa";
       command.Parameters.AddWithValue("$id_pessoa", id);
