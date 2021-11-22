@@ -1,0 +1,67 @@
+@model Pessoa
+
+@{
+ViewData["Title"] = "Update";
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <header>
+  </header>
+  <body class="body">
+
+    <form id="update-pessoa">
+      <div>
+        <strong>Pessoa</strong>
+      </div>
+      <div>
+        <label asp-for="nome">Nome:</label>
+        <input type="text" id= "nome"  name="nome" asp-for="nome"/>
+      </div>
+      <div>
+        <label asp-for="cpf">CPF:</label>
+        <input type="text" name= "cpf" asp-for="cpf"/>
+      </div>
+      <div>
+        <strong> Endereço </strong>
+      </div>
+
+      <div>
+        <label asp-for="endereco.logradouro">logradouro:</label>
+        <input type="text" name= "logradouro" asp-for="endereco.logradouro" />
+      </div>
+
+      <div>
+        <label asp-for="endereco.numero">Numero:</label>
+        <input type="number" name="numero" asp-for="endereco.numero"/>
+      </div>
+      <div>
+        <label asp-for= "endereco.cep">CEP:</label>
+        <input type="text" name="cep" asp-for="endereco.cep"/>
+      </div>
+      <div>
+        <label asp-for="endereco.bairro"  >Bairro</label>
+        <input type="text" name="bairro" asp-for="endereco.bairro" />
+      </div>
+      <div>
+        <label asp-for="endereco.cidade" >Cidade</label>
+        <input type="text" name="cidade" asp-for="endereco.cidade" />
+      </div>
+      <div>
+        <label asp-for="endereco.estado" >Estado</label>
+        <input type="text" name="estado" asp-for="endereco.estado"/>
+      </div>
+        <strong>Telefone</strong>
+        <div>
+          <label asp-for="telefones[0].numero">Numero</label>
+          <input type="number" name="t_numero" asp-for="telefones[0].numero" />
+        </div>
+          <input id="button-update" type="submit" value="Atualizar" />
+        </div>
+    </form>
+  </body>
+</html>
+

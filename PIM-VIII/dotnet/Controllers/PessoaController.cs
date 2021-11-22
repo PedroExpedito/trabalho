@@ -18,8 +18,21 @@ namespace trabalho.Controllers
        Response.StatusCode = 404;
        return Json(new { Message = "User not found" });
      }
-     return Json(pessoa); 
+     return View(pessoa); 
     }
+
+
+    //DEFINIR COMO VAI FICAR
+    [HttpGet("{id}")]
+    public IActionResult buscarPessoaPeloId([FromRoute] int id) {
+     Pessoa pessoa = pessoaDAO.get(id);
+     if(pessoa == null) {
+       Response.StatusCode = 404;
+       return Json(new { Message = "User not found" });
+     }
+     return View("Atualizar", pessoa); 
+    }
+
     [HttpDelete("{id}")]
     public IActionResult deletePessoa([FromRoute] int id) {
       if(!pessoaDAO.remove(id)) {

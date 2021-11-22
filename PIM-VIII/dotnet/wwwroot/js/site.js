@@ -25,3 +25,40 @@ deletePessoaForm.addEventListener("submit", function (e) {
   })
 
 });
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const updatePessoaForm = document.getElementById("update-pessoa");
+
+    if(!updatePessoaForm){
+    updatePessoaForm.addEventListener("submit", function (e) {
+      console.log("aaaaaaaaaaa")
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      var object = {};
+      formData.forEach(function(value, key){
+        object[key] = value;
+      });
+      var json = JSON.stringify(object);
+      console.log(json)
+
+      fetch("/api/pessoa/"+id, {
+        method: 'PUT',
+        body: json,
+
+      }).then(function (response) {
+        return response.text();
+      }).then(function (text) {
+        if(text != "") {
+          window.location.assign("/");
+        }
+      })
+
+    });
+  }
+});
+  
+
