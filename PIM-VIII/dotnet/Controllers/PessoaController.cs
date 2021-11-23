@@ -13,7 +13,7 @@ namespace trabalho.Controllers
 
     [HttpGet("{id}")]
     public IActionResult getPessoa([FromRoute] int id) {
-     Pessoa pessoa = pessoaDAO.get(id);
+     Pessoa pessoa = pessoaDAO.consulte(id);
      if(pessoa == null) {
        Response.StatusCode = 404;
        return Json(new { Message = "User not found" });
@@ -22,7 +22,7 @@ namespace trabalho.Controllers
     }
     [HttpDelete("{id}")]
     public IActionResult deletePessoa([FromRoute] int id) {
-      if(!pessoaDAO.remove(id)) {
+      if(!pessoaDAO.exclua(id)) {
         Response.StatusCode = 404;
         return Json(new { Message = "User not found" });
       }
@@ -31,7 +31,7 @@ namespace trabalho.Controllers
 
     [HttpPut]
     public IActionResult updatePessoa([FromBody] Pessoa pessoa) {
-      if(!pessoaDAO.update(pessoa)) {
+      if(!pessoaDAO.altere(pessoa)) {
         Response.StatusCode = 404;
         return Json(new { Message = "User not found" });
       }
@@ -43,7 +43,7 @@ namespace trabalho.Controllers
 
 
     public IActionResult criarPessoa([FromBody] Pessoa pessoa) {
-      if(pessoaDAO.create(pessoa) > 0) {;
+      if(pessoaDAO.insira(pessoa) > 0) {;
         return Json(pessoa);
       } else {
         Response.StatusCode = 404;
@@ -76,9 +76,9 @@ namespace trabalho.Controllers
       Pessoa p = new Pessoa(nome, cpf, e);
       p.telefones.Add(t);
 
-      pessoaDAO.create(p);
+      pessoaDAO.insira(p);
       
-      return "Sucesso";
+      return "secusso";
     }
 
 

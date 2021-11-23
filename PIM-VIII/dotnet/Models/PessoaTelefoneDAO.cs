@@ -10,7 +10,7 @@ namespace trabalho.Models {
 
 
     // retorna uma lista com todos os telefones de uma pessoa
-    public List<PessoaTelefone> get(int id){
+    public List<PessoaTelefone> consulte(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"select * from pessoa_telefone where id_pessoa=$id";
       command.Parameters.AddWithValue("$id", id);
@@ -28,14 +28,14 @@ namespace trabalho.Models {
     }
 
     // remove um telefone de uma pessoa
-      public bool remove(int id){
+      public bool exclua(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from pessoa_telefone where id_pessoa=$id_pessoa";
       command.Parameters.AddWithValue("$id_pessoa", id);
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public int create(PessoaTelefone entity){
+    public int insira(PessoaTelefone entity){
       int pessoa_id =  entity.id_pessoa;
       int telefone_id =  entity.id_telefone;
 

@@ -10,7 +10,7 @@ namespace trabalho.Models {
 
 
 
-    public TelefoneTipo get(int id){
+    public TelefoneTipo consulte(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"select * from telefone_tipo where id=$id";
       command.Parameters.AddWithValue("$id", id);
@@ -41,14 +41,14 @@ namespace trabalho.Models {
       return telefoneTipos;
     }
 
-    public bool remove(int id){
+    public bool exclua(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from telefone_tipo where id=$id";
       command.Parameters.AddWithValue("$id", id);
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public bool update(TelefoneTipo  entity) {
+    public bool altere(TelefoneTipo  entity) {
       var id = entity.id;
       var tipo = entity.tipo;
       var command = connection.CreateCommand();
@@ -58,7 +58,7 @@ namespace trabalho.Models {
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public int create(TelefoneTipo entity){
+    public int insira(TelefoneTipo entity){
         var tipo = entity.tipo;
         var command = connection.CreateCommand();
         command.CommandText =  @"insert into telefone_tipo (tipo) VALUES ($tipo); SELECT last_insert_rowid()";

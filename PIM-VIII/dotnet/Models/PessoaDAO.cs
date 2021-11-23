@@ -15,26 +15,63 @@ namespace trabalho.Models
 
     TelefoneDAO telefoneDAO = new TelefoneDAO();
 
-    public bool update(Pessoa p) {
+    public Pessoa consulte(string cpf) {
+       var command = connection.CreateCommand();
+
+      command.CommandText = @"SELECT * from pessoa where cpf=$cpf";
+      command.Parameters.AddWithValue("$cpf", cpf);
+
+      var reader = command.ExecuteReader();
+
+      if(reader.Read()) {
+        var p_id = reader.GetInt16(0);
+        var p_nome = reader.GetString(1);
+        var p_cpf = reader.GetString(2);
+        var p_endereco_id = reader.GetInt16(3);
+          
+        // conseguindo endereco
+        var enderecoDAO = new EnderecoDAO();
+        var p_endereco = enderecoDAO.consulte(p_endereco_id);
+
+        // criando pessoa
+        var pessoa = new Pessoa(p_id, p_nome, p_cpf, p_endereco);
+
+        // conseguindo lista de telefones
+        var pessoa_telefoneDAO = new PessoaTelefoneDAO();
+
+        var pessoa_telefoneList = pessoa_telefoneDAO.consulte(p_id);
+
+
+        var telefoneDAO = new TelefoneDAO();
+
+        foreach(PessoaTelefone pessoaTelefone in pessoa_telefoneList) {
+          var telefone = telefoneDAO.consulte(pessoaTelefone.id_telefone);
+          pessoa.telefones.Add(telefone);
+        }
+        return pessoa;
+      }
+      return null;
+    }
+    public bool altere(Pessoa p) {
       // o telefone é a parte mais complicada por que outras pessoas
       // podem ter o mesmo telefone a solução é quando for criar um novo telefone 
       // verificar se já existe igual.
       
       // remove todos os telfones pertencente
-      pessoaTelefoneDAO.remove(p.id);
+      pessoaTelefoneDAO.exclua(p.id);
 
       foreach(Telefone t in p.telefones) {
         // cria novos telfones
-        t.id = telefoneDAO.create(t);
+        t.id = telefoneDAO.insira(t);
         // cria a associação
-        pessoaTelefoneDAO.create(new PessoaTelefone(p.id, t.id));
+        pessoaTelefoneDAO.insira(new PessoaTelefone(p.id, t.id));
       }
 
-      Pessoa pessoa = get(p.id);
+      Pessoa pessoa = consulte(p.id);
 
       if(!pessoa.endereco.Equals(p.endereco)) {
         // Sempre cria um endereço novo
-        p.endereco.id = enderecoDAO.create(p.endereco);
+        p.endereco.id = enderecoDAO.insira(p.endereco);
       } else {
         p.endereco.id = pessoa.endereco.id;
       }
@@ -50,7 +87,7 @@ namespace trabalho.Models
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public Pessoa get(int id) {
+    public Pessoa consulte(int id) {
       var command = connection.CreateCommand();
 
       command.CommandText = @"SELECT * from pessoa where id=$id";
@@ -66,7 +103,7 @@ namespace trabalho.Models
           
         // conseguindo endereco
         var enderecoDAO = new EnderecoDAO();
-        var p_endereco = enderecoDAO.get(p_endereco_id);
+        var p_endereco = enderecoDAO.consulte(p_endereco_id);
 
         // criando pessoa
         var pessoa = new Pessoa(p_id, p_nome, p_cpf, p_endereco);
@@ -74,13 +111,13 @@ namespace trabalho.Models
         // conseguindo lista de telefones
         var pessoa_telefoneDAO = new PessoaTelefoneDAO();
 
-        var pessoa_telefoneList = pessoa_telefoneDAO.get(p_id);
+        var pessoa_telefoneList = pessoa_telefoneDAO.consulte(p_id);
 
 
         var telefoneDAO = new TelefoneDAO();
 
         foreach(PessoaTelefone pessoaTelefone in pessoa_telefoneList) {
-          var telefone = telefoneDAO.get(pessoaTelefone.id_telefone);
+          var telefone = telefoneDAO.consulte(pessoaTelefone.id_telefone);
           pessoa.telefones.Add(telefone);
         }
         return pessoa;
@@ -89,11 +126,11 @@ namespace trabalho.Models
       return null;
     }
 
-    public int create(Pessoa p)
+    public int insira(Pessoa p)
     {
       EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-      int endereco_id = enderecoDAO.create(p.endereco);
+      int endereco_id = enderecoDAO.insira(p.endereco);
 
       var command = connection.CreateCommand();
       command.CommandText = @"
@@ -115,20 +152,20 @@ namespace trabalho.Models
       if( telefones != null) {
       var pessoaTelefoneDAO = new PessoaTelefoneDAO();
       foreach(Telefone t in telefones) {
-         td.create(t);
+         td.insira(t);
          var pessoa_telefone = new PessoaTelefone(p.id,t.id);
-         pessoaTelefoneDAO.create(pessoa_telefone);
+         pessoaTelefoneDAO.insira(pessoa_telefone);
        }
       }
 
       return id;
     }
 
-    public bool remove(int id)
+    public bool exclua(int id)
     {
       PessoaTelefoneDAO pessoaTelefoneDAO = new PessoaTelefoneDAO();
 
-      pessoaTelefoneDAO.remove(id);
+      pessoaTelefoneDAO.exclua(id);
 
       var command = connection.CreateCommand();
       command.CommandText = @"DELETE FROM pessoa WHERE id=$id";
@@ -147,7 +184,7 @@ namespace trabalho.Models
 
       while(reader.Read()) {
         var id = reader.GetInt32(0);
-        var pessoa = get(id);
+        var pessoa = consulte(id);
         Pessoas.Add(pessoa);
       }
 

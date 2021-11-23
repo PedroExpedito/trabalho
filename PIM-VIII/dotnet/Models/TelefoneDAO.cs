@@ -9,7 +9,7 @@ namespace trabalho.Models
     private SqliteConnection connection = Connection.getConnection();
     private List<Telefone> telefones = new List<Telefone>();
 
-    public Telefone get(int id){
+    public Telefone consulte(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"select * from telefone where id=$id";
       command.Parameters.AddWithValue("$id", id);
@@ -23,7 +23,7 @@ namespace trabalho.Models
 
         var telefoneTipoDAO = new TelefoneTipoDAO();
 
-        var telefone_tipo = telefoneTipoDAO.get(tipo_int);
+        var telefone_tipo = telefoneTipoDAO.consulte(tipo_int);
 
         var telefone = new Telefone(id_telefone, numero, DDD, telefone_tipo); 
 
@@ -46,7 +46,7 @@ namespace trabalho.Models
 
           var telefoneTipoDAO = new TelefoneTipoDAO();
 
-          var telefone_tipo = telefoneTipoDAO.get(tipo_int);
+          var telefone_tipo = telefoneTipoDAO.consulte(tipo_int);
 
           var telefone = new Telefone(id_telefone, numero, DDD, telefone_tipo); 
 
@@ -57,14 +57,14 @@ namespace trabalho.Models
       return telefones;
     } 
 
-    public bool remove(int id){
+    public bool exclua(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from telefone where id=$id";
       command.Parameters.AddWithValue("$id", id);
       return command.ExecuteNonQuery() == 0 ? false : true;
     }
 
-    public bool update(Telefone entity){
+    public bool altere(Telefone entity){
 
       var id = entity.id;
       var numero = entity.numero;
@@ -81,7 +81,7 @@ namespace trabalho.Models
 
     } 
 
-    public int create(Telefone entity){
+    public int insira(Telefone entity){
 
       try{
          int _id = exist(entity);
@@ -97,7 +97,7 @@ namespace trabalho.Models
 
       TelefoneTipoDAO TTD = new TelefoneTipoDAO();
 
-      int tipo_id = TTD.create(entity.tipo);
+      int tipo_id = TTD.insira(entity.tipo);
       entity.id = tipo_id;
 
 

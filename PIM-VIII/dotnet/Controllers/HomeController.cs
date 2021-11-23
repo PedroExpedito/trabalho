@@ -30,7 +30,7 @@ namespace trabalho.Controllers
         // [HttpGet("{id}")]
         public IActionResult Editar([FromRoute] int id) {
           PessoaDAO pessoaDAO = new PessoaDAO();
-          Pessoa pessoa = pessoaDAO.get(id);
+          Pessoa pessoa = pessoaDAO.consulte(id);
           if(pessoa == null) {
             // TODO ARRUMAR ISSO
             return View("Privacy");

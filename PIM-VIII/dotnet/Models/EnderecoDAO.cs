@@ -9,7 +9,7 @@ namespace trabalho.Models
     private List<Endereco> Enderecos =  new List<Endereco>();
     private SqliteConnection connection = Connection.getConnection();
 
-    public Endereco get(int id){
+    public Endereco consulte(int id){
       var command = connection.CreateCommand();
       command.CommandText =  @"select * from endereco where id=$id";
       command.Parameters.AddWithValue("$id", id);
@@ -35,7 +35,7 @@ namespace trabalho.Models
     }
 
 
-    public bool remove(int id) {
+    public bool exclua(int id) {
       var command = connection.CreateCommand();
       command.CommandText =  @"delete from endereco where id=$id";
       command.Parameters.AddWithValue("$id", id);
@@ -43,11 +43,11 @@ namespace trabalho.Models
       return affectedRows == 0 ? false : true;
     }
 
-    public bool update(Endereco entity){
+    public bool altere(Endereco entity){
       return false;
     }
 
-    public int create(Endereco entity) {
+    public int insira(Endereco entity) {
       var command = connection.CreateCommand();
       command.CommandText =  @"insert
         into endereco (logradouro, numero, cep, bairro, cidade, estado) values(

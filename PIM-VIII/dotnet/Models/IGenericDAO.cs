@@ -3,15 +3,15 @@ using System.Collections.Generic;
 namespace trabalho.Models
 {
     public interface IGenericDAO<D> {
-    public D get(int id);
+    public D consulte(int id);
 
     public List<D> getAll(); 
 
-    public bool remove(int id);
+    public bool exclua(int id);
 
-    public bool update(D entity); 
+    public bool altere(D entity); 
 
-    public int create(D entity); 
+    public int insira(D entity); 
 }
 }
 
