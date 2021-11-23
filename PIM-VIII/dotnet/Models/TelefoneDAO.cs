@@ -82,6 +82,14 @@ namespace trabalho.Models
     } 
 
     public int create(Telefone entity){
+
+      try{
+         int _id = exist(entity);
+         return _id;
+      }catch(Exception e) {
+        Console.WriteLine(e.Message);
+      }
+
       var command = connection.CreateCommand();
 
       int numero = entity.numero;
@@ -89,7 +97,7 @@ namespace trabalho.Models
 
       TelefoneTipoDAO TTD = new TelefoneTipoDAO();
 
-      int tipo_id= TTD.create(entity.tipo);
+      int tipo_id = TTD.create(entity.tipo);
       entity.id = tipo_id;
 
 
@@ -99,8 +107,23 @@ namespace trabalho.Models
       command.Parameters.AddWithValue("$tipo", tipo_id);
       Console.WriteLine("tipo id: " + tipo_id);
 
-      int id = Convert.ToInt16(command.ExecuteScalar());
+      int id = Convert.ToInt32(command.ExecuteScalar());
       return id;
+
+
+
+      }
+
+      public  int exist(Telefone t) {
+        var command = connection.CreateCommand();
+        command.CommandText = @"select * from telefone numero=$numero, ddd=$ddd, tipo=$tipo;";
+        command.Parameters.AddWithValue("$numero", t.numero);
+        command.Parameters.AddWithValue("$ddd", t.DDD);
+        command.Parameters.AddWithValue("$tipo", t.tipo.id);
+
+        int id = 0;
+        id = Convert.ToInt16(command.ExecuteScalar());
+        return id;
 
     } 
 
