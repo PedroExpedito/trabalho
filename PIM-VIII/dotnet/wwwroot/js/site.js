@@ -36,7 +36,7 @@ if(editarCamposForm) {
     const formData = new  FormData(this);
 
     const json = {
-      id: 10,
+      id: parseInt(formData.get("id")),
       nome: formData.get("nome"),
       cpf: formData.get("cpf"),
       endereco: {
