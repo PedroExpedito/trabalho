@@ -35,6 +35,8 @@ namespace trabalho.Models
       if(!pessoa.endereco.Equals(p.endereco)) {
         // Sempre cria um endereço novo
         p.endereco.id = enderecoDAO.create(p.endereco);
+      } else {
+        p.endereco.id = pessoa.endereco.id;
       }
 
       var command = connection.CreateCommand();

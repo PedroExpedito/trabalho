@@ -1,0 +1,89 @@
+@model Pessoa
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+    <script src="~/site.js"></script>
+
+    <div >
+      <form id="editar-campos">
+
+        <div class="row-box">
+          <strong>Pessoa</strong>
+          <div>
+            <label>Id: </label>
+            <input asp-for="id"/>
+          </div>
+          <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id= "nome"  name="nome" asp-for="nome"/>
+          </div>
+          <div>
+            <label for="CPF">CPF:</label>
+            <input type="text" name="cpf" asp-for="cpf" />
+          </div>
+          <div>
+          </div>
+        </div>
+        <div class="column-box">
+          <strong> Endereço </strong>
+
+          <div class="row-box">
+            <div>
+              <label for="logradouro">logradouro:</label>
+              <input type="text" name= "logradouro"  asp-for="endereco.logradouro"/>
+            </div>
+            <div>
+              <label>Numero:</label>
+              <input type="number" name="numero" asp-for="endereco.numero"/>
+            </div>
+            <div>
+              <label>CEP:</label>
+              <input type="text" name="cep" asp-for="endereco.cep"/>
+            </div>
+          </div>
+          <div class="row-box">
+            <div>
+              <label>Bairro: </label>
+              <input type="text" name="bairro" asp-for="endereco.bairro"/>
+            </div>
+            <div>
+              <label>Cidade: </label>
+              <input type="text" name="cidade" asp-for="endereco.cidade"/>
+            </div>
+            <div>
+              <label>Estado: </label>
+              <input type="text" name="estado" asp-for="endereco.estado"/>
+            </div>
+          </div>
+        </div>
+        <strong>Telefone</strong>
+
+        @foreach(Telefone t in Model.telefones) {
+        <div name="telefone" class="row-box">
+          <div>
+            <label>Numero</label>
+            <input type="number" name="t_numero"  value="@t.numero"/>
+          </div>
+          <div>
+            <label>DDD</label>
+            <input type="number" name="t_ddd"  value="@t.DDD"/>
+          </div>
+          <div>
+            <label>Tipo</label>
+            <input type="text" name="t_tipo" value="@t.tipo"/>
+          </div>
+        </div>
+        }
+        <div>
+          <input type="submit" value="Editar" />
+        </div>
+      </form>
+
+    </div>
+
+  </body>
+</html>

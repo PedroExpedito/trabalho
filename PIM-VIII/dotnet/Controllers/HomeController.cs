@@ -27,6 +27,17 @@ namespace trabalho.Controllers
         public IActionResult Deletar() {
             return View();
         }
+        // [HttpGet("{id}")]
+        public IActionResult Editar([FromRoute] int id) {
+          PessoaDAO pessoaDAO = new PessoaDAO();
+          Pessoa pessoa = pessoaDAO.get(id);
+          if(pessoa == null) {
+            // TODO ARRUMAR ISSO
+            return View("Privacy");
+          }
+          return View(pessoa);
+        }
+
 
         public IActionResult Privacy()
         {
