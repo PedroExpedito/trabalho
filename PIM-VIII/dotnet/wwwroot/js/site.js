@@ -49,15 +49,15 @@ if(editarCamposForm) {
       },
       telefones: [
         {
-          numero: 100,
-          ddd: 30,
+          numero: formData.get("t_numero"),
+          ddd: formData.get("t_ddd"),
           tipo: {
-            tipo: "t_tipo"
+            tipo: formData.get("t_tipo"),
           }
         }
       ]
     }
-
+    
     console.log(JSON.stringify(json));
     fetch("/api/pessoa/", {
       method: 'PUT',

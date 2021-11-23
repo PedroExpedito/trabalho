@@ -62,19 +62,19 @@
         </div>
         <strong>Telefone</strong>
 
-        @foreach(Telefone t in Model.telefones) {
+        @for(int i = 0; i < Model.telefones.Count(); i++) {
         <div name="telefone" class="row-box">
           <div>
             <label>Numero</label>
-            <input type="number" name="t_numero"  value="@t.numero"/>
+            <input type="number" name="t_numero"  asp-for="telefones[0].numero"/>
           </div>
           <div>
             <label>DDD</label>
-            <input type="number" name="t_ddd"  value="@t.DDD"/>
+            <input type="number" name="t_ddd"  asp-for="telefones[0].DDD"/>
           </div>
           <div>
             <label>Tipo</label>
-            <input type="text" name="t_tipo" value="@t.tipo"/>
+            <input type="text" name="t_tipo" asp-for="telefones[0].tipo"/>
           </div>
         </div>
         }
