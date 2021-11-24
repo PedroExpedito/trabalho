@@ -58,6 +58,7 @@ button {
 }
 
 input[type=submit] {
+  margin-top: 10px;
   width: 100%;
   background-color: #4CAF50;
   color: white;

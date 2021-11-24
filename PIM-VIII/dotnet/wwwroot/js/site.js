@@ -35,6 +35,22 @@ if(editarCamposForm) {
     e.preventDefault();
     const formData = new  FormData(this);
 
+      let telefones = [];
+      const numeros = formData.getAll("t_numero");
+      const ddds = formData.getAll("t_ddd");
+      const tipos = formData.getAll("t_tipo");
+
+      for(let i = 0; i < numeros.length; i++) {
+        const telefone = {
+          numero: parseInt(numeros[i]),
+          ddd: parseInt(ddds[i]),
+          tipo: {
+            tipo: tipos[i]
+          }
+        }
+        telefones.push(telefone);
+    };
+
     const json = {
       id: parseInt(formData.get("id")),
       nome: formData.get("nome"),
@@ -47,18 +63,10 @@ if(editarCamposForm) {
         cidade: formData.get("cidade"),
         estado: formData.get("estado"),
       },
-      telefones: [
-        {
-          numero: 100,
-          ddd: 30,
-          tipo: {
-            tipo: "t_tipo"
-          }
-        }
-      ]
+      telefones: telefones    
     }
+    console.log( JSON.stringify(json));
 
-    console.log(JSON.stringify(json));
     fetch("/api/pessoa/", {
       method: 'PUT',
       body: JSON.stringify(json),
@@ -69,8 +77,7 @@ if(editarCamposForm) {
       return response.text();
     }).then(function (text) {
       if(text != "") {
-        window.location.assign("/home/Pessoas");
-        console.log(text);
+        window.location.assign("/pessoa/consulte");
       }
     })
 
