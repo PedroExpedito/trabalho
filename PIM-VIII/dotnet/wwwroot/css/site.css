@@ -1,4 +1,10 @@
-﻿#deletar {
+﻿#adicionar_telefones {
+  padding-left: 10px;
+  padding: 20px;
+  width: 10px;
+  height: 10px;
+}
+#deletar {
   margin-top: 50px;
 }
 .column-box {

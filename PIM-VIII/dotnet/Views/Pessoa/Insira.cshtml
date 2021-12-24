@@ -11,7 +11,7 @@ ViewData["Title"] = "PIM VIII";
   </header>
   <body class="body">
 
-    <form action="api/pessoa" method="post" enctype="multipart/form-data">
+    <form id="inserir_form">
 
       <div class="row-box">
         <strong>Pessoa</strong>
@@ -59,18 +59,25 @@ ViewData["Title"] = "PIM VIII";
         </div>
       </div>
       <div class="row-box">
-        <strong>Telefone</strong>
-        <div>
-          <label>Numero</label>
-          <input type="number" name="t_numero"/>
+        <div class="row-box">
+          <strong>Telefone</strong>
+          <button type="button" id="adicionar_telefones">+</button>
         </div>
-        <div>
-          <label>DDD</label>
-          <input type="number" name="ddd"/>
-        </div>
-        <div>
-          <label>Tipo</label>
-          <input type="text" name="tipo"/>
+        <div id="insira_telefones">
+          <div id="telefone">
+            <div>
+              <label>Numero</label>
+              <input type="number" name="t_numero"/>
+            </div>
+            <div>
+              <label>DDD</label>
+              <input type="number" name="t_ddd"/>
+            </div>
+            <div>
+              <label>Tipo</label>
+              <input type="text" name="t_tipo"/>
+            </div>
+          </div>
         </div>
       </div>
       <div>
